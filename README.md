@@ -6,7 +6,7 @@ A aplicação foi isolada nesta pasta para não misturar os ficheiros de outros 
 
 ```text
 herbarium-pwa/
-  index.html                 Entrada da aplicação
+  flora.html                 Entrada da aplicação
   manifest.webmanifest       Nome, ícones e comportamento de instalação
   service-worker.js          Cache do shell e suporte offline
   assets/
@@ -18,6 +18,6 @@ herbarium-pwa/
 
 ## Abrir
 
-Sirva esta pasta através de `localhost` ou HTTPS. Abrir `index.html` diretamente com `file://` não permite registar o service worker. No VS Code, pode usar a extensão Live Server no `index.html`.
+Sirva esta pasta através de `localhost` ou HTTPS. Abrir `flora.html` diretamente com `file://` não permite registar o service worker. No VS Code, pode usar a extensão Live Server no `flora.html`.
 
 A PWA foi testada em `http://localhost:4173`; o manifesto e o shell são guardados em cache para a aplicação voltar a abrir sem rede depois da primeira visita.

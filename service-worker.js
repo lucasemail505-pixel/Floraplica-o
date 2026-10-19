@@ -1,7 +1,6 @@
-const CACHE_NAME = 'herbarium-shell-v1';
+const CACHE_NAME = 'herbarium-shell-v4';
 const APP_SHELL = [
-  './',
-  './index.html',
+  './flora.html',
   './manifest.webmanifest',
   './assets/css/app.css',
   './assets/js/app.js',
@@ -56,10 +55,10 @@ self.addEventListener('fetch', (event) => {
       fetch(request)
         .then((response) => {
           const responseCopy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put('./index.html', responseCopy));
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseCopy));
           return response;
         })
-        .catch(() => caches.match('./index.html'))
+        .catch(() => caches.match(request).then((cachedResponse) => cachedResponse || caches.match('./flora.html')))
     );
     return;
   }
