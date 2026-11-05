@@ -1,11 +1,18 @@
-const CACHE_NAME = 'herbarium-shell-v5';
+const CACHE_NAME = 'herbarium-shell-v10';
 const APP_SHELL = [
   './',
   './index.html',
   './flora.html',
   './manifest.webmanifest',
+  './service-worker.js',
   './assets/css/app.css',
   './assets/js/app.js',
+  './assets/alecrim.jpg',
+  './assets/anthurium.jpg',
+  './assets/lirio.png',
+  './assets/maranta-leuconeura.jpg',
+  './assets/monstera-adansonii.jpg',
+  './assets/prunus-serrulata.png',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
   './assets/icons/icon-maskable-512.png',

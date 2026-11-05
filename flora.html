@@ -127,6 +127,9 @@
     .welcome-action:active { transform: scale(.985); }
     .welcome-action.secondary { border-color: var(--outline); background: transparent; color: var(--primary); }
     .welcome-action.secondary:hover { background: var(--surface-mid); }
+    .welcome-guest-link { justify-self: center; padding: 6px 4px; border: 0; background: transparent; color: var(--primary); font-size: 11px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+    .welcome-guest-link:hover { color: var(--primary-deep); }
+    .welcome-guest-link:focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; }
     .welcome-caption { margin: 14px 0 0; color: var(--muted); font-size: 8px; letter-spacing: .06em; text-align: center; }
     .signup-shell { justify-content: space-between; }
     .signup-back { width: fit-content; min-height: 38px; padding: 0 10px; display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--outline-soft); border-radius: 6px; background: var(--surface-low); color: var(--primary); font-size: 10px; font-weight: 600; cursor: pointer; }
@@ -417,6 +420,8 @@
     .plant-image-wrap { aspect-ratio: 1 / 1; border-radius: 5px; }
     .plant-name { margin: 10px 0 2px; color: var(--primary); font: 500 18px/1.25 "Newsreader", serif; }
     .plant-card .scientific-name { font-size: 14px; }
+    .image-credit { margin: 4px 0 0; color: var(--muted); font-size: 8px; line-height: 1.4; }
+    .image-credit a { color: inherit; text-underline-offset: 2px; }
     .family-small {
       position: absolute;
       top: 8px; left: 8px;
@@ -739,6 +744,7 @@
       <div class="welcome-actions">
         <button id="welcome-login" class="welcome-action" type="button">Entrar<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></button>
         <button id="welcome-signup" class="welcome-action secondary" type="button">Criar conta</button>
+        <button id="welcome-guest" class="welcome-guest-link" type="button">Explorar sem iniciar sessão</button>
       </div>
     </div>
     <p class="welcome-caption">HERBARIUM · GUIA BOTÂNICO E JARDIM PESSOAL</p>
@@ -891,26 +897,26 @@
       </div>
       <article class="feature-card">
         <div class="feature-image-wrap">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7tOlD4lRodfnyilmkuws8bKoQROvPw3nP5rsaDk-DDG0px5FOtaaUqGNqjJy9BIvHroXTCcuPZ_qR1J1FKrUne0rcBfOCaYWqhhHoJpcyThB5M9nkvsJAp9Kkkq7UruCJ_Eb2DlZqbf_OYWyokUvMl4h7a573qXt_BiX8Js1cgBkA-QaxoAwK436Il69FwagFK_RX_bVe3haCyfITlGWFgqAPhq84E6xlLUTc1nfgdlmkrC2AHdit" alt="Folha recortada de uma Monstera deliciosa, fotografada em luz natural suave">
-          <span class="family-label">Família Araceae</span>
+          <img src="./assets/prunus-serrulata.png" alt="Flores rosa-pálidas de Prunus serrulata na primavera">
+          <span class="family-label">Família Rosaceae</span>
           <button class="icon-button bookmark" type="button" aria-label="Guardar no herbário" aria-pressed="false" title="Guardar no herbário">
             <span class="material-symbols-outlined" aria-hidden="true">bookmark</span>
           </button>
         </div>
         <div class="feature-copy">
           <div class="plant-title-row">
-            <h2 id="specimen-title">Costela-de-Adão</h2>
-            <span class="scientific-name">Monstera deliciosa</span>
+            <h2 id="specimen-title">Prunus serrulata</h2>
+            <span class="scientific-name">Cerejeira-japonesa · Sakura</span>
           </div>
-          <p class="description">Nativa das florestas tropicais da América Central, célebre pela sua folhagem escultural e capacidade de adaptação em espaços interiores arejados.</p>
+          <p class="description">Árvore ornamental originária da Ásia Oriental, conhecida pelas abundantes flores rosa-pálidas que cobrem os ramos na primavera.</p>
           <div class="care-grid">
             <div class="care-item">
               <span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>
-              <span><span class="care-label">Exposição</span><span class="care-value">Luz indireta</span></span>
+              <span><span class="care-label">Exposição</span><span class="care-value">Sol pleno</span></span>
             </div>
             <div class="care-item">
               <span class="material-symbols-outlined" aria-hidden="true">water_drop</span>
-              <span><span class="care-label">Hidratação</span><span class="care-value">Rega moderada</span></span>
+              <span><span class="care-label">Hidratação</span><span class="care-value">Regular, sem encharcar</span></span>
             </div>
           </div>
           <button class="monograph-link" id="open-monograph" type="button">
@@ -930,65 +936,70 @@
         <span id="result-count" class="count" aria-live="polite">4 Registo(s)</span>
       </div>
       <div class="plant-list" id="plant-list">
-        <article class="plant-card" data-category="indoor" data-search="figueira-lira ficus lyrata moraceae luz abundante rega semanal interior">
+        <article class="plant-card" data-category="indoor" data-search="monstera adansonii araceae costela-de-adão mini folhas trepadeira luz indireta">
           <div class="plant-image-wrap">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE31oOfF1mVeRrL7dKtdX-Hyppa8SIGrFCgow_pD6r0f67iveQIrFmXE9nEjYw1x99Ls51lvFPLwJfaVjb3w8d-wjA1M_SlHXOMdt4gJ8MnqDLU9zD9H4TZx1dAU3VMyEC-rKCZPPfDF9s08P3QltaOUNLjQwue99cID_slz7yso-9XeZN_a21oreO_wsd6kp0C41LPbLGvAUtMDNteH6Z53OqM_i-JvC81IEqIkpCoH9R5MP3Cbam" alt="Folhas largas e nervuradas de uma Ficus lyrata">
-            <span class="family-small">Moraceae</span>
+            <img src="./assets/monstera-adansonii.jpg" alt="Folhas perfuradas de Monstera adansonii">
+            <span class="family-small">Araceae</span>
           </div>
           <div>
-            <h3 class="plant-name">Figueira-lira</h3>
-            <div class="scientific-name">Ficus lyrata</div>
+            <h3 class="plant-name">Monstera-de-Adanson</h3>
+            <div class="scientific-name">Monstera adansonii</div>
           </div>
+          <p class="description">Trepadeira tropical de folhas perfuradas, ideal para interiores luminosos e húmidos.</p>
+          <p class="image-credit">Imagem: <a href="https://commons.wikimedia.org/wiki/File:Monstera_adansonii_112059118.jpg" target="_blank" rel="noreferrer">Jacob Rehage</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noreferrer">CC0</a></p>
           <div class="care-list">
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">light_mode</span>Luz abundante</div>
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Rega 1x / semana</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">light_mode</span>Luz indireta</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Solo ligeiramente húmido</div>
           </div>
         </article>
 
-        <article class="plant-card" data-category="flowers" data-search="alfazema lavanda lavandula angustifolia lamiaceae sol pleno flores amigo animais">
+        <article class="plant-card" data-category="flowers" data-search="lírio lirio lilium liliaceae flores brancas sol meia-sombra">
           <div class="plant-image-wrap">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM0v8rUAED11GXpnUjEmClRRVEVZuoflOqER_YRPCtuP245VSryBwzm3AXZ7WFcjnyVDs8dzWMzgMUvdN0FW0k-4befolSFZoN6tHPdKZsaT2jCWkOctKOGDNNHveZw9Z3EIRo6q8y--ik5-L7vq3nOFp0OVUfIhdKvwgsx3NZLWk-rZ32kM51mkLsY2QhA8XdNJJBXo3AIbfgrX-aDufO7AWL6hBRT8N7xQN1-7zL4-jWAOQTJG51" alt="Ramos de alfazema com pequenas flores violetas">
-            <span class="family-small">Lamiaceae</span>
-            <span class="safe-label"><span class="material-symbols-outlined" aria-hidden="true">pets</span>Seguro</span>
+            <img src="./assets/lirio.png" alt="Lírios brancos em flor no jardim">
+            <span class="family-small">Liliaceae</span>
           </div>
           <div>
-            <h3 class="plant-name">Alfazema / Lavanda</h3>
-            <div class="scientific-name">Lavandula angustifolia</div>
+            <h3 class="plant-name">Lírio</h3>
+            <div class="scientific-name">Lilium spp.</div>
           </div>
+          <p class="description">Planta ornamental de flores grandes e perfumadas, que floresce na primavera e no verão.</p>
           <div class="care-list">
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">sunny</span>Sol pleno direto</div>
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">eco</span>Propriedades relaxantes</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">sunny</span>Sol ou meia-sombra</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Solo húmido e drenado</div>
           </div>
         </article>
 
-        <article class="plant-card" data-category="indoor" data-search="ave do paraíso gigante strelitzia nicolai strelitziaceae crescimento rápido luz intensa interior">
+        <article class="plant-card" data-category="indoor" data-search="antúrio anthurium andraeanum araceae flores coloridas interior luz indireta">
           <div class="plant-image-wrap">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsxMCkf-C-HHz58zc2dnJP5Uey7R3liqWyWWaT7EYX196xhStXYI4PspGYgOxFAwPiB7_eEG18GUocI8vuBfm3rRPtG-As3wHLtJExd0e1_UcuziXeCde9fGPXqmM3y2gM33OfT48rztfxhTeNAFLg1eXrO02Q3h-XvPl9ugt174W14S7MQxd2sYGS1T3eP7ZPJgDo7K35aBD7g5KjmGedvuyP6L4sdMTEeUWdbzZ8wgHDBlnE302y" alt="Folhas grandes e brilhantes de uma Strelitzia nicolai">
-            <span class="family-small">Strelitziaceae</span>
+            <img src="./assets/anthurium.jpg" alt="Antúrio com espata vermelha e folhas verdes">
+            <span class="family-small">Araceae</span>
           </div>
           <div>
-            <h3 class="plant-name">Ave do Paraíso Gigante</h3>
-            <div class="scientific-name">Strelitzia nicolai</div>
+            <h3 class="plant-name">Antúrio</h3>
+            <div class="scientific-name">Anthurium andraeanum</div>
           </div>
+          <p class="description">Planta tropical reconhecida pelas espatas vistosas e brilhantes, que podem florir durante grande parte do ano.</p>
+          <p class="image-credit">Imagem: <a href="https://commons.wikimedia.org/wiki/File:Anthurium_(Flamingoplant)_12-08-2019_(actm)_01.jpg" target="_blank" rel="noreferrer">Agnes Monkelbaan</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a></p>
           <div class="care-list">
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">trending_up</span>Crescimento rápido</div>
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Luz intensa / Sol matinal</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Luz indireta</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Humidade elevada</div>
           </div>
         </article>
 
-        <article class="plant-card" data-category="indoor" data-search="calathea orbifolia goeppertia orbifolia marantaceae humidade alta meia sombra amigo animais interior">
+        <article class="plant-card" data-category="indoor" data-search="maranta maranta leuconeura marantaceae planta rezadeira folhas decorativas meia-sombra interior">
           <div class="plant-image-wrap">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVvFjqMjEZdlrKY2zUdiEbYHyGbTT4dpyr9FgoK8t_XuQEX1t5-5rit1iv6Xfl9QxEMVsMqHHkkBFIi7dIrJTtdCPxen2AxD9I7rVLvg1M5jS8_FyWydnqkUk4J7K6y8EmOi31ONxTOvQrEnvPaCZzi02z-9vJGnk1B4YKJjrJRS5-EkMevZ0pEuUIoVGXFNEowpS45RA5iEUW_aRDTMaZQvuVO6W4sp98E1JtCci9Sv5f4BktTz3F" alt="Folhas arredondadas com riscas prateadas de uma Calathea orbifolia">
+            <img src="./assets/maranta-leuconeura.jpg" alt="Folhas ornamentais de Maranta leuconeura">
             <span class="family-small">Marantaceae</span>
-            <span class="safe-label"><span class="material-symbols-outlined" aria-hidden="true">pets</span>Amigo dos Animais</span>
           </div>
           <div>
-            <h3 class="plant-name">Calathea orbifolia</h3>
-            <div class="scientific-name">Goeppertia orbifolia</div>
+            <h3 class="plant-name">Maranta-pena-de-pavão</h3>
+            <div class="scientific-name">Maranta leuconeura</div>
           </div>
+          <p class="description">Planta de interior com folhas desenhadas que se elevam ao anoitecer; aprecia humidade e luz suave.</p>
+          <p class="image-credit">Imagem: <a href="https://commons.wikimedia.org/wiki/File:Maranta_leuconeura_%27Marisela%27.jpg" target="_blank" rel="noreferrer">Katherine Wagner-Reiss</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a></p>
           <div class="care-list">
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">humidity_high</span>Humidade alta (60%+)</div>
-            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">shadow</span>Meia-sombra / Luz suave</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">humidity_high</span>Humidade alta</div>
+            <div class="care-line"><span class="material-symbols-outlined" aria-hidden="true">shadow</span>Luz indireta suave</div>
           </div>
         </article>
       </div>
@@ -1021,19 +1032,19 @@
       <div class="task-list">
         <article class="care-task" data-done="false">
           <div class="task-plant">
-            <div class="task-thumb"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2c-RpFhxPqhu_qFDTNLhu_4pCKeiVe1XxDTiYu1oNfWL6wUeJRGVrSCUZLkF-X6oSOpoxz7J2H6Q2FHXaFx-_I4TvOBI7IIys54FcKXu1-kWOe8s8Rnlk_BCo84dTkB3ChvqnRkWplrtlnlNZSx4TcFWcv3AXVjNcWhVN4I82UbR1JotkSvm-7TYwSF-Wippth3Nnm-ac-DT4C3JnLM9SrF-xsnhbYlbIA0l5LGg5ywdAsh7qb_EE" alt="Folha de Monstera deliciosa"></div>
+            <div class="task-thumb"><img src="./assets/prunus-serrulata.png" alt="Flores de Prunus serrulata"></div>
             <div class="task-copy">
-              <div class="task-name-row"><span class="task-name">Monstera Deliciosa</span><span class="task-room">· Sala de Estar</span></div>
-              <p class="task-detail"><span class="material-symbols-outlined" aria-hidden="true">opacity</span>Rega necessária hoje (400ml)</p>
+              <div class="task-name-row"><span class="task-name">Prunus serrulata</span><span class="task-room">· Varanda</span></div>
+              <p class="task-detail"><span class="material-symbols-outlined" aria-hidden="true">opacity</span>Verificar o solo e regar se necessário</p>
             </div>
           </div>
-          <button class="task-button" type="button" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">check</span><span>Regado</span></button>
+          <button class="task-button" type="button" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">check</span><span>Verificado</span></button>
         </article>
         <article class="care-task" data-done="false">
           <div class="task-plant">
-            <div class="task-thumb"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5uVltzPnndY8QzODrDfFPBUofN6vPFzOjf0_x6SERoEhoe-Wn8ROeV8-G2HbhGEf4VU6b-evgxVb1d3U4oMUiuBLZqWAImPqSZtazTlETz3at92jDMKYtmrq3slKTHSpItYdX43-YXoQ8XHrw8P9wUs0YfHfBIhVy5mCBclfdKYiFpIfDepyNdJJN1HtQsJ_FOf_ks5AHVpael4XzOujIYi4IaFOL1TfiDt7A9WRK_M6Lu_M2XdXL" alt="Folhas de Calathea orbifolia"></div>
+            <div class="task-thumb"><img src="./assets/maranta-leuconeura.jpg" alt="Folhas de Maranta leuconeura"></div>
             <div class="task-copy">
-              <div class="task-name-row"><span class="task-name">Calathea Orbifolia</span><span class="task-room">· Quarto</span></div>
+              <div class="task-name-row"><span class="task-name">Maranta-pena-de-pavão</span><span class="task-room">· Quarto</span></div>
               <p class="task-detail"><span class="material-symbols-outlined" aria-hidden="true">air</span>Pulverizar folhas / Humidade</p>
             </div>
           </div>
@@ -1041,9 +1052,9 @@
         </article>
         <article class="care-task" data-complete="true">
           <div class="task-plant">
-            <div class="task-thumb"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6ZmHnH7xsx5CBck0yfZ3X9NgcCRN4BIFKFRCZjOB2xKuEaTCh-_dL9JD9iwahFVtqMeE32IB50uyrJSmpEC1sV9aawvz5pgNLePnjDk3Zt0Qbqmh_j_pjP1O8i1xptDvJJ4gALhpwMXemskfOAaVbrbTIEnzUvnaJwuArqDh0yVJaFVjKuG60Nh1h5JGQiNLT6DIhzzKER8eCdXlVvTbtqKaJeJzwlpy985crpb5CEeMy7iJ-M5EA" alt="Folhagem de Ficus lyrata"></div>
+            <div class="task-thumb"><img src="./assets/monstera-adansonii.jpg" alt="Folhas de Monstera adansonii"></div>
             <div class="task-copy">
-              <div class="task-name-row"><span class="task-name">Ficus Lyrata</span><span class="task-room">· Escritório</span></div>
+              <div class="task-name-row"><span class="task-name">Monstera adansonii</span><span class="task-room">· Escritório</span></div>
               <p class="task-detail"><span class="material-symbols-outlined" aria-hidden="true">event</span>Próxima rega em 3 dias</p>
             </div>
           </div>
@@ -1064,48 +1075,50 @@
         <button class="room-filter" type="button" data-room="quarto" aria-pressed="false">Quarto (1)</button>
       </div>
       <div class="garden-grid" id="garden-grid">
-        <article class="garden-plant" data-room="sala" data-plant-key="monstera">
+        <article class="garden-plant" data-room="varanda" data-plant-key="prunus-serrulata">
           <div class="garden-plant-image">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdBANocXX216UsW1HwzmeiJPcS8LmFxGtfMlqlKCvTNpCJYN-D8oEEfowicMlNHUvW5KSbo2iZkRRtJ4Sax87_l-fXho36N-8l31nCZlPVmtQziWvPC8huEdjHqAf6vSuZV6qd7N7eypIc_fFPKtLAbe8pwyNXklSkDZshtaTTX0y5ogt_NMCbg3JXqAjQXq9PUTD-kgyOaFvOqtbyDinlsvIhAJMoHLLTktJjO8u_1aIdSKkVGsfq" alt="Monstera deliciosa num vaso de terracota">
-            <span class="plant-status attention">Precisa de Atenção</span>
-            <span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Hoje</span>
+            <img src="./assets/prunus-serrulata.png" alt="Cerejeira-japonesa em floração">
+            <span class="plant-status">Saudável</span>
+            <span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">local_florist</span>Floração</span>
           </div>
           <div class="garden-plant-copy">
-            <p class="garden-scientific">Monstera deliciosa</p><h3 class="garden-plant-name">Costela-de-Adão</h3>
-            <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">chair</span>Sala</span><span>Rega há 6 dias</span></div>
+            <p class="garden-scientific">Prunus serrulata</p><h3 class="garden-plant-name">Cerejeira-japonesa</h3>
+            <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span>Varanda</span><span>Floração primaveril</span></div>
           </div>
         </article>
         <article class="garden-plant" data-room="quarto">
           <div class="garden-plant-image">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUjJpIt5KllQf0gL-gIwwZdTeOWCQBWCPqPuuiOq6TUzVMY24buwHfKkzxBnp6kMvqVD1TAmT3dP_EGKOnS94bGnpSUieKKPHTdEs_Kf7C6hJxf7cCAE3gizaaZfo1C_mrF8SrPuStIW8EXlUCix0KCtP45xNA18jLz5Q5-9rAAcrbBlyy85GAP4A_kfqLyCqsVf4GdkmFYoFy6mwOODhxU1RnQD3fmFRj8SM9qc6LIxD9C_oaWQ1d" alt="Calathea orbifolia num vaso claro">
+            <img src="./assets/maranta-leuconeura.jpg" alt="Maranta-pena-de-pavão num vaso">
             <span class="plant-status">Saudável</span>
             <span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">opacity</span>85%</span>
           </div>
           <div class="garden-plant-copy">
-            <p class="garden-scientific">Goeppertia orbifolia</p><h3 class="garden-plant-name">Calatéia Prata</h3>
+            <p class="garden-scientific">Maranta leuconeura</p><h3 class="garden-plant-name">Maranta-pena-de-pavão</h3>
             <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">bed</span>Quarto</span><span>Rega ontem</span></div>
           </div>
         </article>
         <article class="garden-plant" data-room="sala">
           <div class="garden-plant-image">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXdGMUDfv925aswwaelSChNu6QJrzI_h1WUXhg_R6sS-gL0MDmG8eIeJlHQm0j6aRmg6RJLiviMzcB0lcttMIjhyUn8miPHJ_mTD_GdKlHkLA3QsX3FEiQNPdGiyI5cFK6AlpJ6onHjF2RruECxByqfJS4byUSNSCejFQRJdJLO-e428NAXJYvFRz1uNJJ3Gy35UrOskS25sLZKQe_ESOvmMyhn0_Iw1FFA9zeyAnQBkRTCpNmBtAI" alt="Ficus lyrata junto a uma janela">
+            <img src="./assets/monstera-adansonii.jpg" alt="Monstera adansonii junto a uma janela">
             <span class="plant-status">Saudável</span>
             <span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Direta</span>
           </div>
           <div class="garden-plant-copy">
-            <p class="garden-scientific">Ficus lyrata</p><h3 class="garden-plant-name">Figueira-Lira</h3>
+            <p class="garden-scientific">Monstera adansonii</p><h3 class="garden-plant-name">Monstera-de-Adanson</h3>
             <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">desk</span>Escritório</span><span>Rega há 2 dias</span></div>
           </div>
         </article>
         <article class="garden-plant" data-room="varanda">
           <div class="garden-plant-image">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH4IbEvdtm5jQF2_WFLVRXf5fZUQIT2qBCtWhndm2iT5J5F_bHjDep24s5fGjfhigPYMmR70ime6XLW_CzJ5CQ9skca8krm8UA-6XKi2TaRjvadU-dEM3NAqDvt5JwSVG6ZaOKfgJkcV8BHmrzgiOP-m2tMVGs36W81ASakpEwaXS3hPg9_5c2MaV8JrGdovgBKfHKHWN2XlQxR7-bX65urwE7wykrLHpeuhpN5_C64EJ_MFDz9Ihp" alt="Oliveira anã numa varanda ensolarada">
+            <img src="./assets/alecrim.jpg" alt="Alecrim em floração no exterior">
             <span class="plant-status">Saudável</span>
             <span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">nest_eco_leaf</span>Vigorosa</span>
           </div>
           <div class="garden-plant-copy">
-            <p class="garden-scientific">Olea europaea</p><h3 class="garden-plant-name">Oliveira Anã</h3>
+            <p class="garden-scientific">Salvia rosmarinus</p><h3 class="garden-plant-name">Alecrim</h3>
             <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span>Varanda</span><span>Rega há 5 dias</span></div>
+            <p class="description">Arbusto mediterrânico aromático, resistente à seca e apreciador de sol e solos bem drenados.</p>
+            <p class="image-credit">Imagem: <a href="https://commons.wikimedia.org/wiki/File:Salvia_rosmarinus_kz03.jpg" target="_blank" rel="noreferrer">Krzysztof Ziarnek, Kenraiz</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a></p>
           </div>
         </article>
       </div>
@@ -1188,10 +1201,10 @@
         <button class="profile-section-meta" id="profile-see-plants" type="button" style="border:0;background:none;cursor:pointer">Ver 4 plantas</button>
       </div>
       <div class="profile-favorites">
-        <article class="profile-favorite"><div class="favorite-image"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj7J0p5sPmHZRr1-tmTjwyvHEHA_3EoCSK0igsuAl5iO01PYhhJGkT-5NQlPe6jgUZkrDR_ORdRwMXFAQ-vu0Ob_W2kLnGEwl4iJRHyUwuPX9wGEoeBdfHU3dIqxbHbOwteyQJR7kD9sP-Jr0HwQyJeukHQbytsA4--OgLvWx57mi9-Lm-7amRWt_NEtXzwhn4W4uPCbEAxH3XMqUPUJcUF5JSwSI2arTw_n6J6DfByPMaiV0gEiXY" alt="Folha de Monstera deliciosa"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Monstera deliciosa</p><h3 class="favorite-name">Costela-de-Adão</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Rega em 2 dias</div></article>
-        <article class="profile-favorite"><div class="favorite-image"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7yUXZH10l_o_h0KbDI8Pxh5dxAiRHgVfBcnzxzZ69Ifmwe3IckPAEzeVivzWgJI0LkbYBqitMDh3pe0Rga5RtjQP5yR-asEgLwg27dQHpluMUcItaEHqsG7r9ukk-LvrlZxKMqGaHWgKcsxlKXZKN2EOPzAQtMUPuC4qa0lx8mjTbjxHQxOREuBLUZeYucHqzFCyZ7q9GTe4jrP6_hyBXm4FzzoeKzHkNfNEWjeyEALbufvsxAR2z" alt="Folhas de Ficus lyrata"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Ficus lyrata</p><h3 class="favorite-name">Figueira-Lira</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">light_mode</span>Luz indireta alta</div></article>
-        <article class="profile-favorite"><div class="favorite-image"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZXVH1Vjpb5wD1hRM671PfbBbTrrMmol7rdyfxlv2er-igycjwFhvZecwr5rd3sjsQ5oxym7GmJG4gMB4MmBFlGR3e22WJ6u8QC2WslrgIGxktJOF8zWQgtD9jrcHDHay8ZP2C0B_RisCE-Ct5MjjbaEritfg1N4sWUwJTFaGvZJBoPUtd9Xi2L4_fL663OlJjZDYzqeI9wSM4T8yNIoEFYf3hnLOjTtT1CmLmvjV7Oj6BfWBprKlJ" alt="Folhagem de Strelitzia nicolai"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Strelitzia nicolai</p><h3 class="favorite-name">Ave-do-Paraíso Gigante</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">thermostat</span>21°C · Ótimo</div></article>
-        <article class="profile-favorite"><div class="favorite-image"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADP9VMNIIGkwk8TuGCKbXTOHMK2tBuJYKmZdZJGFK7lbVdno4-NkvIZ3Kquj_u7UNkh_Vl_D0QKGgeSYMg1ncKH2NfndwRDFSpYMoKolEktNTZ9o4JiwU1mbTRqCY-FqgTquS409pVN-E45z_MeV7X_axBJS5l0LZwVGGPFkkFgaPfB4c9K0oSCRg1TdE_OQnwMLf-p16x5zUPyCXfAV0roSJSv7lR_z3AogUGeRxZb5-Yl-ngnAus" alt="Folhas arredondadas de Goeppertia orbifolia"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Goeppertia orbifolia</p><h3 class="favorite-name">Calatéia Redonda</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">humidity_percentage</span>65% humidade</div></article>
+        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/prunus-serrulata.png" alt="Flores de Prunus serrulata"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Prunus serrulata</p><h3 class="favorite-name">Cerejeira-japonesa</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Sol pleno · Exterior</div></article>
+        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/monstera-adansonii.jpg" alt="Folhas de Monstera adansonii"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Monstera adansonii</p><h3 class="favorite-name">Monstera-de-Adanson</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">light_mode</span>Luz indireta</div></article>
+        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/anthurium.jpg" alt="Antúrio com flores vermelhas"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Anthurium andraeanum</p><h3 class="favorite-name">Antúrio</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Luz indireta</div></article>
+        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/maranta-leuconeura.jpg" alt="Folhas de Maranta leuconeura"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Maranta leuconeura</p><h3 class="favorite-name">Maranta-pena-de-pavão</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">humidity_percentage</span>Humidade alta</div></article>
       </div>
     </section>
 
@@ -1209,9 +1222,9 @@
     <footer class="profile-colophon">Herbarium Hortus Botanicus · Edição 2.4</footer>
   </main>
 
-  <main id="monstera-detail" class="detail-view" hidden aria-label="Monografia de Monstera deliciosa">
+  <main id="plant-detail" class="detail-view" hidden aria-label="Monografia de Prunus serrulata">
     <header class="detail-hero">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK4-VaxGV0vXQUQxFtrSY6_CovRy8uVwwG3wdzfTuHRvSzWZzvBp9fgsicRoziS-qETUayEh-cpkBOLKNzyQDZlg9_bMl8DGhPSZEwV_wlOOR1CLaz41wNludF1CAiQRDloMdpQdfYrhQGQstu_N65yc63vQ2MAS1KKR5ltqvS4JPQi0Mk41kUqYh5qzSPr1Xu_XymErgCYtdmcVDF8vMY2wjaL-XaeO2X8yTvuBSedfB5nFWr25mN" alt="Folha de Monstera deliciosa com fenestrações naturais, iluminada por luz difusa">
+      <img src="./assets/prunus-serrulata.png" alt="Flores rosa-pálidas de Prunus serrulata">
       <div class="detail-hero-actions">
         <button id="detail-back" class="detail-round-button" type="button" aria-label="Voltar ao Herbário" title="Voltar ao Herbário"><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span></button>
         <div>
@@ -1227,37 +1240,37 @@
 
     <div class="detail-content">
       <section class="detail-identity">
-        <div class="detail-ref-row"><span>Catálogo de Espécimes Vivos</span><span>Ref. Tropicalis 1849</span></div>
-        <h1 class="detail-species">Monstera deliciosa</h1>
-        <p class="detail-common-name">Costela-de-Adão</p>
+        <div class="detail-ref-row"><span>Catálogo de Espécimes Vivos</span><span>Ref. Rosaceae 1912</span></div>
+        <h1 class="detail-species">Prunus serrulata</h1>
+        <p class="detail-common-name">Cerejeira-japonesa · Sakura</p>
         <div class="taxonomy-chips">
-          <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">nature</span>Família: Araceae</span>
-          <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">public</span>Origem: Florestas Tropicais</span>
-          <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">filter_vintage</span>Hábito: Epífita / Trepadeira</span>
+          <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">nature</span>Família: Rosaceae</span>
+          <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">public</span>Origem: Ásia Oriental</span>
+          <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">filter_vintage</span>Hábito: Árvore caducifólia</span>
         </div>
       </section>
 
       <section aria-labelledby="vital-care-title">
         <div class="detail-section-heading">
           <h2 id="vital-care-title" class="detail-section-title"><span class="material-symbols-outlined" aria-hidden="true">potted_plant</span>Resumo de Cuidados Vitais</h2>
-          <span class="protocol-label">Protocolo A1</span>
+          <span class="protocol-label">Protocolo B2</span>
         </div>
         <div class="vital-grid">
           <article class="vital-card">
             <div class="vital-top">Rega<span class="material-symbols-outlined" aria-hidden="true">water_drop</span></div>
-            <div><p class="vital-value">A cada 7-10 dias</p><p class="vital-detail">Verificar solo seco a 3 cm de profundidade antes de hidratar.</p></div>
+            <div><p class="vital-value">Regular no crescimento</p><p class="vital-detail">Regue sobretudo as árvores jovens quando o solo começar a secar; evite encharcar.</p></div>
           </article>
           <article class="vital-card">
             <div class="vital-top">Luminosidade<span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span></div>
-            <div><p class="vital-value">Luz indireta brilhante</p><p class="vital-detail">Evitar sol direto nas horas quentes para não queimar as folhas.</p></div>
+            <div><p class="vital-value">Sol pleno</p><p class="vital-detail">Escolha um local exterior soalheiro para favorecer a floração.</p></div>
           </article>
           <article class="vital-card">
             <div class="vital-top">Temperatura<span class="material-symbols-outlined" aria-hidden="true">device_thermostat</span></div>
-            <div><p class="vital-value">18°C — 27°C</p><p class="vital-detail">Sensível a correntes de ar frio e não tolera geadas.</p></div>
+            <div><p class="vital-value">Clima temperado</p><p class="vital-detail">Árvore caducifólia resistente ao frio do inverno, com floração na primavera.</p></div>
           </article>
           <article class="vital-card toxicity">
             <div class="vital-top">Toxicidade<span class="material-symbols-outlined" aria-hidden="true">warning</span></div>
-            <div><span class="toxicity-tag">Alerta Doméstico</span><p class="vital-detail">Tóxica para cães e gatos. Contém cristais insolúveis de oxalato de cálcio.</p></div>
+            <div><span class="toxicity-tag">Não ingerir</span><p class="vital-detail">As sementes e folhas não devem ser ingeridas; mantenha-as fora do alcance de crianças e animais.</p></div>
           </article>
         </div>
       </section>
@@ -1265,43 +1278,43 @@
       <section aria-labelledby="species-guide-title">
         <div class="detail-section-heading">
           <h2 id="species-guide-title" class="detail-section-title"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span>Guia Botânico da Espécie</h2>
-          <span class="protocol-label">Monografia #14</span>
+          <span class="protocol-label">Monografia #27</span>
         </div>
         <details class="detail-accordion" open>
           <summary><span class="accordion-title"><span class="material-symbols-outlined" aria-hidden="true">nature_people</span>Sobre a Espécie</span><span class="material-symbols-outlined accordion-chevron" aria-hidden="true">expand_more</span></summary>
           <div class="accordion-body">
-            <p>Nativa do sul do México até à Colômbia, a <em>Monstera deliciosa</em> desenvolve as suas notáveis fenestrações foliares como adaptação ecológica: as fendas permitem que a luz chegue às folhas inferiores e reduzem a resistência aos ventos tropicais.</p>
-            <p>Produz raízes aéreas grossas que absorvem humidade ambiente e ajudam a planta a fixar-se aos troncos das árvores.</p>
+            <p>A <em>Prunus serrulata</em>, conhecida como cerejeira-japonesa ou sakura, é uma árvore ornamental originária da Ásia Oriental, cultivada pelas suas abundantes flores rosa ou brancas no início da primavera.</p>
+            <p>É uma árvore caducifólia: perde as folhas no outono e desenvolve melhor a floração quando cresce no exterior, com sol e estações bem definidas.</p>
           </div>
         </details>
         <details class="detail-accordion">
           <summary><span class="accordion-title"><span class="material-symbols-outlined" aria-hidden="true">checklist</span>Guia de Cuidados Passo a Passo</span><span class="material-symbols-outlined accordion-chevron" aria-hidden="true">expand_more</span></summary>
           <div class="accordion-body">
-            <div class="guide-step"><span class="step-number">1</span><p><strong>Higienização foliar</strong><br>Limpe as folhas com um pano macio húmido a cada quinze dias para remover o pó.</p></div>
-            <div class="guide-step"><span class="step-number">2</span><p><strong>Tutor de musgo ou fibra de coco</strong><br>Use um suporte vertical para orientar as raízes aéreas e estimular folhas maiores.</p></div>
-            <div class="guide-step"><span class="step-number">3</span><p><strong>Boa drenagem</strong><br>Não deixe água acumulada no prato do vaso; o excesso pode apodrecer as raízes.</p></div>
+            <div class="guide-step"><span class="step-number">1</span><p><strong>Local soalheiro</strong><br>Plante no exterior, num sítio com sol direto e espaço para o desenvolvimento da copa.</p></div>
+            <div class="guide-step"><span class="step-number">2</span><p><strong>Rega equilibrada</strong><br>Enquanto jovem, regue regularmente nos períodos secos, sem deixar as raízes encharcadas.</p></div>
+            <div class="guide-step"><span class="step-number">3</span><p><strong>Poda ligeira</strong><br>Remova ramos secos ou danificados após a floração e evite podas severas.</p></div>
           </div>
         </details>
         <details class="detail-accordion">
           <summary><span class="accordion-title"><span class="material-symbols-outlined" aria-hidden="true">healing</span>Problemas Comuns</span><span class="material-symbols-outlined accordion-chevron" aria-hidden="true">expand_more</span></summary>
           <div class="accordion-body">
-            <div class="problem-note"><strong>Folhas amareladas e solo encharcado</strong><p>Reduza a frequência das regas e verifique as raízes para excluir sinais de apodrecimento.</p></div>
-            <div class="problem-note"><strong>Pontas castanhas e secas</strong><p>Pode indicar baixa humidade ou acumulação de sais minerais; avalie a água e a humidade ambiente.</p></div>
-            <div class="problem-note"><strong>Folhas novas pequenas e sem recortes</strong><p>A planta pode precisar de mais claridade indirecta.</p></div>
+            <div class="problem-note"><strong>Floração reduzida</strong><p>Pouco sol ou falta de frio sazonal podem limitar a floração; confirme se o local é adequado.</p></div>
+            <div class="problem-note"><strong>Manchas nas folhas</strong><p>Retire folhas afetadas e evite molhar a copa ao regar para reduzir problemas fúngicos.</p></div>
+            <div class="problem-note"><strong>Folhas amareladas</strong><p>Verifique a drenagem do solo e ajuste a rega, sobretudo em períodos chuvosos.</p></div>
           </div>
         </details>
         <details class="detail-accordion">
           <summary><span class="accordion-title"><span class="material-symbols-outlined" aria-hidden="true">grass</span>Substrato e Fertilização</span><span class="material-symbols-outlined accordion-chevron" aria-hidden="true">expand_more</span></summary>
           <div class="accordion-body">
-            <p><strong>Substrato ideal:</strong> mistura arejada com casca de pinheiro, fibra de coco ou perlite e matéria orgânica.</p>
-            <p><strong>Adubação:</strong> use fertilizante equilibrado mensalmente na primavera e no verão; reduza a frequência nos meses frios.</p>
+            <p><strong>Solo ideal:</strong> fértil e bem drenado; evite locais onde a água permaneça acumulada.</p>
+            <p><strong>Adubação:</strong> uma aplicação moderada de composto na primavera é suficiente em solos pobres.</p>
           </div>
         </details>
       </section>
 
       <aside class="curator-note">
         <h2 class="curator-note-title"><span class="material-symbols-outlined" aria-hidden="true">history_edu</span>Nota de Coleta do Curador</h2>
-        <blockquote class="curator-quote">“Exemplar catalogado com maturação vigorosa. As fenestrações simétricas atestam excelente equilíbrio de luminosidade difusa no recinto.”</blockquote>
+        <blockquote class="curator-quote">“A floração delicada da cerejeira anuncia a primavera e transforma os ramos nus numa nuvem de pétalas rosadas.”</blockquote>
         <div class="curator-attribution"><span>Dr. Aureliano Silva · Herbário Central</span><span>12 de Outubro</span></div>
       </aside>
     </div>
@@ -1331,9 +1344,9 @@
   </nav>
 
   <dialog id="monograph-dialog" aria-labelledby="dialog-title">
-    <h2 id="dialog-title">Costela-de-Adão</h2>
-    <p><em>Monstera deliciosa</em> · Araceae</p>
-    <p>Planta tropical de interior que prefere luz indireta abundante, rega moderada e um substrato bem drenado. Deixe a camada superior do substrato secar entre regas.</p>
+    <h2 id="dialog-title">Prunus serrulata</h2>
+    <p>Cerejeira-japonesa · Rosaceae</p>
+    <p>Árvore ornamental de exterior, famosa pelas flores rosa-pálidas da primavera. Prefere sol pleno e solo fértil, húmido mas bem drenado.</p>
     <div class="dialog-close"><button id="close-monograph" type="button">Fechar</button></div>
   </dialog>
 
@@ -1384,7 +1397,19 @@
       heading.focus();
     }
 
+    function enterApp() {
+      welcomeScreen.hidden = true;
+      loginScreen.hidden = true;
+      signupScreen.hidden = true;
+      appInterface.hidden = false;
+      document.body.classList.remove('login-active');
+      document.body.classList.add('app-active');
+      document.title = 'Herbarium — Arquivo Botânico Digital';
+      document.getElementById('page-title').focus();
+    }
+
     document.getElementById('welcome-login').addEventListener('click', () => showEntryScreen('login'));
+    document.getElementById('welcome-guest').addEventListener('click', enterApp);
     document.getElementById('welcome-signup').addEventListener('click', () => showEntryScreen('signup'));
     document.getElementById('login-back').addEventListener('click', () => showEntryScreen('welcome'));
     document.getElementById('signup-back').addEventListener('click', () => showEntryScreen('welcome'));
@@ -1397,12 +1422,7 @@
 
     loginForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      loginScreen.hidden = true;
-      appInterface.hidden = false;
-      document.body.classList.remove('login-active');
-      document.body.classList.add('app-active');
-      document.title = 'Herbarium — Arquivo Botânico Digital';
-      document.getElementById('page-title').focus();
+      enterApp();
     });
 
     passwordToggle.addEventListener('click', () => {
@@ -1431,7 +1451,7 @@
     const herbariumView = document.getElementById('herbario');
     const gardenView = document.getElementById('garden');
     const profileView = document.getElementById('profile');
-    const detailView = document.getElementById('monstera-detail');
+    const detailView = document.getElementById('plant-detail');
     const detailActions = document.getElementById('detail-actions');
     const bottomNavigation = document.querySelector('.bottom-nav');
     const navigationButtons = [...document.querySelectorAll('.nav-item[data-view]')];
@@ -1485,7 +1505,7 @@
     });
 
     document.getElementById('detail-share').addEventListener('click', async () => {
-      const shareData = { title: 'Monstera deliciosa', text: 'Monografia botânica da Costela-de-Adão.' };
+      const shareData = { title: 'Prunus serrulata', text: 'Monografia botânica da cerejeira-japonesa.' };
       if (navigator.share) {
         try {
           await navigator.share(shareData);
@@ -1498,28 +1518,28 @@
     });
 
     document.getElementById('detail-water-alert').addEventListener('click', () => {
-      showDetailToast('Lembrete de rega configurado para daqui a 8 dias.');
+      showDetailToast('Lembrete de rega configurado para a cerejeira-japonesa.');
     });
 
     document.getElementById('detail-add-garden').addEventListener('click', () => {
-      const existingMonstera = document.querySelector('.garden-plant[data-plant-key="monstera"]');
-      if (existingMonstera) {
-        showDetailToast('A Costela-de-Adão já faz parte do seu Jardim.');
+      const existingPrunus = document.querySelector('.garden-plant[data-plant-key="prunus-serrulata"]');
+      if (existingPrunus) {
+        showDetailToast('A cerejeira-japonesa já faz parte do seu Jardim.');
         showAppView('garden');
         return;
       }
 
       const card = document.createElement('article');
       card.className = 'garden-plant';
-      card.dataset.room = 'sala';
-      card.dataset.plantKey = 'monstera';
-      card.innerHTML = '<div class="garden-plant-image"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdBANocXX216UsW1HwzmeiJPcS8LmFxGtfMlqlKCvTNpCJYN-D8oEEfowicMlNHUvW5KSbo2iZkRRtJ4Sax87_l-fXho36N-8l31nCZlPVmtQziWvPC8huEdjHqAf6vSuZV6qd7N7eypIc_fFPKtLAbe8pwyNXklSkDZshtaTTX0y5ogt_NMCbg3JXqAjQXq9PUTD-kgyOaFvOqtbyDinlsvIhAJMoHLLTktJjO8u_1aIdSKkVGsfq" alt="Monstera deliciosa num vaso de terracota"><span class="plant-status attention">Precisa de Atenção</span><span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Hoje</span></div><div class="garden-plant-copy"><p class="garden-scientific">Monstera deliciosa</p><h3 class="garden-plant-name">Costela-de-Adão</h3><div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">chair</span>Sala</span><span>Adicionada hoje</span></div></div>';
-      card.hidden = activeRoom !== 'all' && activeRoom !== 'sala';
+      card.dataset.room = 'varanda';
+      card.dataset.plantKey = 'prunus-serrulata';
+      card.innerHTML = '<div class="garden-plant-image"><img src="./assets/prunus-serrulata.png" alt="Flores da cerejeira-japonesa"><span class="plant-status">Saudável</span><span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">local_florist</span>Floração</span></div><div class="garden-plant-copy"><p class="garden-scientific">Prunus serrulata</p><h3 class="garden-plant-name">Cerejeira-japonesa</h3><div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span>Varanda</span><span>Adicionada hoje</span></div></div>';
+      card.hidden = activeRoom !== 'all' && activeRoom !== 'varanda';
       document.getElementById('garden-grid').prepend(card);
       document.getElementById('active-plant-count').textContent = String(Number(document.getElementById('active-plant-count').textContent) + 1);
       syncProfilePlantCount();
       showAppView('garden');
-      showDetailToast('Costela-de-Adão adicionada ao seu Jardim.');
+      showDetailToast('Cerejeira-japonesa adicionada ao seu Jardim.');
     });
 
     const taskCards = [...document.querySelectorAll('.care-task:not([data-complete="true"])')];
