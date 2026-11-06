@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#254b38">
+  <meta name="theme-color" content="#82977a">
   <link rel="manifest" href="./manifest.webmanifest">
   <title>Herbarium — Entrar / Autenticação</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,21 +13,21 @@
   <style>
     :root {
       color-scheme: light;
-      --primary: #254b38;
-      --primary-deep: #193c2b;
-      --secondary: #62824d;
-      --accent: #b96842;
-      --accent-soft: #f3e2d1;
-      --text: #293129;
-      --muted: #727b6d;
-      --outline: #cbd4bd;
-      --outline-soft: #e4e9d8;
-      --surface: #fcf9ed;
-      --surface-low: #f4f3e4;
-      --surface-mid: #e9eedc;
-      --surface-white: #fff;
-      --secondary-soft: #dfe9d2;
-      --shadow: 0 12px 30px rgba(37, 75, 56, 0.1);
+      --primary: #344b38;
+      --primary-deep: #283b2d;
+      --secondary: #6b8568;
+      --accent: #9c6846;
+      --accent-soft: #efe1cc;
+      --text: #33382e;
+      --muted: #727565;
+      --outline: #c9cbb2;
+      --outline-soft: #dedfc9;
+      --surface: #f3efdf;
+      --surface-low: #ece9d8;
+      --surface-mid: #dfe6d4;
+      --surface-white: #fcf9ee;
+      --secondary-soft: #d8e2cf;
+      --shadow: 0 16px 38px rgba(52, 75, 56, .11);
     }
 
     * { box-sizing: border-box; }
@@ -751,6 +751,219 @@
       .plant-card { display: flex; flex-direction: column; }
       .plant-card .care-list { margin-top: auto; }
     }
+    @media (min-width: 900px) {
+      body.app-active { padding-bottom: 100px; }
+      .shell { width: min(100% - 64px, 1320px); }
+      .topbar-inner { min-height: 72px; padding: 12px 0; }
+      .brand-mark { font-size: 30px; }
+      .brand-name { font-size: 25px; }
+      main { padding: 36px 0 42px; }
+      #herbario {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        align-items: start;
+        column-gap: 28px;
+      }
+      #herbario > section:nth-child(-n+2) { grid-column: 1 / -1; }
+      #herbario > .feature-section { grid-column: 1 / 5; margin-top: 8px; }
+      #herbario > .collection-section { grid-column: 5 / -1; margin-top: 8px; }
+      #herbario > .field-note { grid-column: 1 / 5; }
+      #herbario .plant-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      #herbario .plant-image-wrap { aspect-ratio: 4 / 3; }
+      .category-row { margin-inline: 0; padding-inline: 0; }
+      .garden-view { padding-top: 36px; }
+      .garden-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+      .garden-plant-image { aspect-ratio: 4 / 3; }
+      .garden-plant-copy { padding: 14px; }
+      .garden-plant-name { font-size: 18px; }
+      .garden-meta { font-size: 10px; }
+      .task-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .care-task { min-height: 80px; }
+      .garden-fab { right: max(32px, calc((100vw - 1320px) / 2)); bottom: 32px; }
+      .profile-view { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; padding-top: 36px; }
+      .profile-view > .profile-card { grid-column: 1 / -1; }
+      .profile-view > .profile-feedback, .profile-view > .profile-colophon { grid-column: 1 / -1; }
+      .profile-favorites { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .detail-view {
+        width: min(100% - 64px, 1320px);
+        padding: 28px 0 120px;
+        display: grid;
+        grid-template-columns: minmax(320px, .8fr) minmax(0, 1.2fr);
+        align-items: start;
+        gap: 36px;
+        background-color: transparent;
+        background-image: none;
+      }
+      .detail-hero { position: sticky; top: 96px; height: min(72vh, 760px); min-height: 480px; border-radius: 10px; }
+      .detail-content { padding: 4px 0 24px; }
+      .detail-species { font-size: 42px; }
+      .vital-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .detail-action-inner { width: min(100% - 64px, 1320px); justify-content: flex-end; }
+      .detail-action { flex: 0 1 220px; }
+      .detail-action.primary { flex: 0 1 260px; }
+      .bottom-nav {
+        right: 50%;
+        bottom: 20px;
+        left: auto;
+        width: max-content;
+        min-height: 60px;
+        padding: 6px 12px;
+        display: flex;
+        gap: 6px;
+        border: 1px solid var(--outline-soft);
+        border-radius: 999px;
+        box-shadow: var(--shadow);
+        transform: translateX(50%);
+      }
+      .nav-item { min-width: 112px; min-height: 44px; padding: 0 12px; flex-direction: row; gap: 8px; border-radius: 999px; }
+      .nav-item:hover { background: var(--surface-mid); }
+      .nav-item span:last-child { font-size: 10px; letter-spacing: .04em; }
+    }
+    @media (min-width: 1200px) {
+      #herbario { column-gap: 40px; }
+      #herbario > .feature-section, #herbario > .field-note { grid-column: 1 / 5; }
+      #herbario > .collection-section { grid-column: 5 / -1; }
+      #herbario .plant-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .garden-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .profile-view { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .profile-view > .profile-card, .profile-view > .profile-feedback, .profile-view > .profile-colophon { grid-column: 1 / -1; }
+    }
+    body { background: var(--surface); }
+    body.app-active { background: #f1efdf; }
+    body.login-active { background: #dce5d2; }
+    .topbar {
+      background: rgba(220, 229, 210, .98);
+      border-bottom-color: rgba(83, 106, 79, .2);
+      box-shadow: 0 5px 18px rgba(52, 75, 56, .09);
+    }
+    .brand { color: #344b38; }
+    .brand-mark { color: #688363; }
+    .topbar .icon-button { color: #344b38; }
+    .topbar .icon-button:hover { background: rgba(89, 118, 83, .12); }
+    .welcome-shell {
+      border: 1px solid rgba(100, 125, 91, .2);
+      background:
+        radial-gradient(ellipse at 86% 12%, rgba(173, 194, 151, .46), transparent 36%),
+        linear-gradient(145deg, #dce6d0, #e8e8d4 62%, #f0ecdb);
+      color: #344b38;
+    }
+    .welcome-brand, .welcome-title { color: #344b38; }
+    .welcome-brand .material-symbols-outlined, .welcome-benefit-icon { color: #557253; }
+    .welcome-hero {
+      border-color: rgba(93, 120, 83, .32);
+      background: radial-gradient(circle at 50% 46%, #f0f0d9 0, #c8d8b7 48%, #95ad88 100%);
+    }
+    .welcome-hero-mark {
+      border-color: rgba(255, 255, 245, .9);
+      background: #f5f1e2;
+      color: #415b43;
+      box-shadow: 0 16px 38px rgba(52, 75, 56, .16);
+    }
+    .welcome-copy { max-width: 520px; margin-inline: auto; }
+    .welcome-description, .welcome-benefit p { color: #555f4f; }
+    .welcome-benefit {
+      border-color: rgba(91, 112, 78, .18);
+      background: rgba(255, 253, 240, .54);
+    }
+    .welcome-benefit h2 { color: #344b38; }
+    .welcome-benefit-icon { background: #dce6d2; }
+    .welcome-caption { color: #66745d; }
+    .welcome-action {
+      border-color: #4f6b50;
+      background: #4f6b50;
+      color: #fffdf3;
+    }
+    .welcome-action:hover { border-color: #3e5941; background: #3e5941; }
+    .welcome-action.secondary {
+      border-color: rgba(74, 101, 72, .38);
+      background: rgba(255, 253, 240, .38);
+      color: #344b38;
+    }
+    .welcome-action.secondary:hover { background: rgba(255, 253, 240, .72); }
+    .welcome-guest-link { color: #344b38; }
+    .welcome-guest-link:hover { color: #557253; }
+    .login-shell, .signup-shell {
+      border-color: var(--outline-soft);
+      border-radius: 12px;
+      background: var(--surface);
+      box-shadow: 0 22px 65px rgba(12, 27, 18, .24);
+    }
+    .feature-card, .plant-card, .garden-plant, .care-task, .profile-card,
+    .profile-panel, .profile-badge, .profile-favorite, .profile-settings,
+    .field-note, .seasonal-tip, .vital-card, .detail-accordion, .curator-note {
+      border-radius: 10px;
+      box-shadow: 0 5px 18px rgba(40, 54, 38, .055);
+    }
+    .feature-card, .plant-card, .garden-plant, .care-task,
+    .profile-card, .profile-panel, .profile-badge, .profile-favorite,
+    .profile-settings, .vital-card, .detail-accordion, .curator-note {
+      border-color: #dedac4;
+    }
+    .plant-card:hover, .garden-plant:hover { box-shadow: 0 12px 26px rgba(40, 54, 38, .12); }
+    .feature-image-wrap, .plant-image-wrap, .garden-plant-image { background: #d2d8be; }
+    .search-wrap input, .login-input, #add-plant-form input, #add-plant-form select,
+    #identify-photo, #identify-species { background: #fbf8ec; }
+    .category, .room-filter { border-color: #d2cfb8; background: #e7e5d1; }
+    .category[aria-pressed="true"], .room-filter[aria-pressed="true"] { background: var(--primary); }
+    .care-item, .profile-metric, .problem-note { background: #f5f1e2; }
+    .notebook-status { border-color: #b7c8a9; background: #e1e7d4; color: #415d46; }
+    .bottom-nav {
+      border-color: rgba(83, 106, 79, .2);
+      background: rgba(220, 229, 210, .98);
+      box-shadow: 0 9px 28px rgba(52, 75, 56, .13);
+    }
+    .nav-item { color: #596653; }
+    .nav-item[aria-current="page"] { color: #344b38; }
+    .nav-item[aria-current="page"] .material-symbols-outlined { color: #62805d; }
+    .garden-fab, .monograph-link, .login-submit, .detail-action.primary {
+      background: #4f6b50;
+    }
+    .garden-fab:hover, .monograph-link:hover, .login-submit:hover, .detail-action.primary:hover {
+      background: #3e5941;
+    }
+    .detail-view { background-color: #f3efdf; }
+    .detail-action-bar { background: rgba(243, 239, 223, .96); }
+    .detail-toast, .dialog-close button { background: #405d43; }
+    .dialog-close button:hover { background: #304a35; }
+    @media (min-width: 760px) {
+      body.login-active { align-items: center; padding: 32px 0; background: #dce5d2; }
+      .login-shell, .signup-shell {
+        width: min(100% - 48px, 540px);
+        min-height: min(820px, calc(100dvh - 64px));
+        padding: 30px 38px;
+      }
+      #welcome-screen {
+        width: min(100% - 80px, 1200px);
+        min-height: min(820px, calc(100dvh - 80px));
+        margin-block: auto;
+        padding: 30px 56px;
+        border: 1px solid rgba(100, 125, 91, .2);
+        border-radius: 18px;
+        box-shadow: 0 28px 80px rgba(52, 75, 56, .14);
+      }
+      #welcome-screen > div {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
+        grid-template-rows: auto auto auto;
+        align-content: center;
+        align-items: center;
+        column-gap: 56px;
+      }
+      #welcome-screen .welcome-hero { grid-column: 1; grid-row: 1 / 4; width: min(100%, 410px); margin: 0 auto; }
+      #welcome-screen .welcome-copy { grid-column: 2; grid-row: 1; }
+      #welcome-screen .welcome-benefits { grid-column: 2; grid-row: 2; }
+      #welcome-screen .welcome-actions { grid-column: 2; grid-row: 3; }
+      .welcome-title { font-size: clamp(40px, 5vw, 58px); }
+      .welcome-description { font-size: 14px; }
+      .welcome-caption { color: #66745d; }
+      .bottom-nav {
+        background: rgba(220, 229, 210, .98);
+        border-color: rgba(83, 106, 79, .2);
+      }
+      .nav-item { color: #596653; }
+      .nav-item[aria-current="page"] { background: rgba(119, 148, 106, .18); color: #344b38; }
+      .nav-item:hover { background: rgba(119, 148, 106, .12); }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
@@ -1067,13 +1280,13 @@
         <h1 id="garden-title" class="garden-title">O Meu Jardim</h1>
         <span class="notebook-status">Caderno Ativo</span>
       </div>
-      <p class="garden-summary"><span class="summary-dot" aria-hidden="true"></span><span><span id="active-plant-count">6</span> plantas ativas ·</span><span class="pending-summary"><span id="pending-count">2</span> regas pendentes para hoje</span></p>
+      <p class="garden-summary"><span class="summary-dot" aria-hidden="true"></span><span><span id="active-plant-count">4</span> plantas ativas ·</span><span class="pending-summary"><span id="pending-count">2</span> cuidados por verificar</span></p>
     </section>
 
     <section class="garden-section" aria-labelledby="tasks-title">
       <div class="garden-section-heading">
-        <h2 id="tasks-title" class="garden-section-title"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Tarefas de Hoje</h2>
-        <span class="routine-label">Rotina Diária</span>
+        <h2 id="tasks-title" class="garden-section-title"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span>Rotinas de Cuidados</h2>
+        <span class="routine-label">Cuidados selecionados</span>
       </div>
       <div class="task-list">
         <article class="care-task" data-plant-key="prunus-serrulata" data-done="false">
@@ -1091,7 +1304,7 @@
             <div class="task-thumb"><img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80" alt="Folhas de Maranta leuconeura"></div>
             <div class="task-copy">
               <div class="task-name-row"><span class="task-name">Maranta-pena-de-pavão</span><span class="task-room">· Quarto</span></div>
-              <p class="task-detail"><span class="material-symbols-outlined" aria-hidden="true">air</span>Pulverizar folhas / Humidade</p>
+              <p class="task-detail"><span class="material-symbols-outlined" aria-hidden="true">air</span>Verificar a humidade; usar humidificador se o ar estiver seco</p>
             </div>
           </div>
           <button class="task-button" type="button" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">check</span><span>Feito</span></button>
@@ -1114,12 +1327,7 @@
         <h2 id="garden-collection-title" class="garden-section-title">Coleção Botânica</h2>
         <span class="routine-label">Filtrar por Divisão</span>
       </div>
-      <div class="room-filters" role="group" aria-label="Filtrar plantas por divisão">
-        <button class="room-filter" type="button" data-room="all" aria-pressed="true">Todas (6)</button>
-        <button class="room-filter" type="button" data-room="sala" aria-pressed="false">Sala de Estar (3)</button>
-        <button class="room-filter" type="button" data-room="varanda" aria-pressed="false">Varanda / Exterior (2)</button>
-        <button class="room-filter" type="button" data-room="quarto" aria-pressed="false">Quarto (1)</button>
-      </div>
+      <div class="room-filters" role="group" aria-label="Filtrar plantas por divisão"></div>
       <div class="garden-grid" id="garden-grid">
         <article class="garden-plant" data-room="varanda" data-plant-key="prunus-serrulata">
           <div class="garden-plant-image">
@@ -1143,7 +1351,7 @@
             <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">bed</span>Quarto</span><span>Rega ontem</span></div>
           </div>
         </article>
-        <article class="garden-plant" data-room="sala" data-plant-key="monstera-adansonii">
+        <article class="garden-plant" data-room="escritorio" data-plant-key="monstera-adansonii">
           <div class="garden-plant-image">
             <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=800&q=80" alt="Monstera adansonii junto a uma janela">
             <span class="plant-status">Saudável</span>
@@ -1192,7 +1400,7 @@
       <div class="profile-metrics" aria-label="Estatísticas do perfil">
         <div class="profile-metric"><span class="metric-value">14</span><span class="metric-label">Espécies identificadas</span></div>
         <div id="profile-streak" class="profile-metric"><span class="metric-value"><span class="material-symbols-outlined" aria-hidden="true">local_fire_department</span>1</span><span class="metric-label">Dias de sequência</span></div>
-        <div class="profile-metric"><span class="metric-value" id="profile-plant-count">6</span><span class="metric-label">Plantas no Jardim</span></div>
+        <div class="profile-metric"><span class="metric-value" id="profile-plant-count">4</span><span class="metric-label">Plantas no Jardim</span></div>
       </div>
     </section>
 
@@ -1410,7 +1618,14 @@
       <input id="new-plant-species" name="species" maxlength="48" placeholder="Ex.: Epipremnum aureum">
       <label for="new-plant-room">Divisão</label>
       <select id="new-plant-room" name="room">
-        <option value="sala">Sala de Estar</option><option value="varanda">Varanda / Exterior</option><option value="quarto">Quarto</option>
+        <option value="sala">Sala de estar</option>
+        <option value="cozinha">Cozinha</option>
+        <option value="casa-banho">Casa de banho</option>
+        <option value="quarto">Quarto</option>
+        <option value="escritorio">Escritório</option>
+        <option value="corredor">Corredor</option>
+        <option value="entrada">Entrada</option>
+        <option value="varanda">Varanda / Exterior</option>
       </select>
       <div class="dialog-close"><button type="submit">Adicionar</button></div>
     </form>
@@ -1515,6 +1730,16 @@
     const gardenView = document.getElementById('garden');
     const profileView = document.getElementById('profile');
     const detailView = document.getElementById('plant-detail');
+    const roomOptions = {
+      sala: { label: 'Sala de estar', icon: 'chair' },
+      cozinha: { label: 'Cozinha', icon: 'countertops' },
+      'casa-banho': { label: 'Casa de banho', icon: 'bathtub' },
+      quarto: { label: 'Quarto', icon: 'bed' },
+      escritorio: { label: 'Escritório', icon: 'desk' },
+      corredor: { label: 'Corredor', icon: 'door_front' },
+      entrada: { label: 'Entrada', icon: 'door_front' },
+      varanda: { label: 'Varanda / Exterior', icon: 'balcony' }
+    };
     const plantCare = {
       'prunus-serrulata': {
         name: 'Prunus serrulata',
@@ -1554,7 +1779,7 @@
         safetyDetail: 'Mantenha fora do alcance de crianças e animais de estimação.',
         difficulty: 'Fácil a moderada',
         difficultyDetail: 'Cresce bem com luz indireta, rega equilibrada e apoio para trepar.',
-        room: 'sala'
+        room: 'escritorio'
       },
       lilium: {
         name: 'Lilium spp.',
@@ -1765,6 +1990,9 @@
       const isFavorite = Boolean(document.querySelector(`.profile-favorite[data-plant-key="${plantKey}"]`));
       favoriteButton.setAttribute('aria-pressed', String(isFavorite));
       favoriteButton.setAttribute('aria-label', isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+      document.getElementById('detail-add-garden').hidden = Boolean(
+        document.querySelector(`.garden-plant[data-plant-key="${plantKey}"]`)
+      );
       showAppView('detail');
       detailView.querySelector('.detail-hero-actions > button:first-child').focus();
     }
@@ -1840,14 +2068,12 @@
       card.dataset.room = plant.room;
       card.dataset.plantKey = activePlantKey;
       card.innerHTML = '<div class="garden-plant-image"><img alt=""><span class="plant-status">Saudável</span><span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">local_florist</span>Nova</span></div><div class="garden-plant-copy"><p class="garden-scientific"></p><h3 class="garden-plant-name"></h3><div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span></span><span>Adicionada hoje</span></div></div>';
-      const roomLabels = { sala: 'Sala', varanda: 'Varanda', quarto: 'Quarto' };
-      const roomIcons = { sala: 'chair', varanda: 'balcony', quarto: 'bed' };
       card.querySelector('.garden-plant-image img').src = activePlantPhoto || plant.image;
       card.querySelector('.garden-plant-image img').alt = plant.commonName;
       card.querySelector('.garden-scientific').textContent = plant.name;
       card.querySelector('.garden-plant-name').textContent = plant.commonName;
-      card.querySelector('.garden-meta .material-symbols-outlined').textContent = roomIcons[plant.room];
-      card.querySelector('.garden-meta span:first-child').append(document.createTextNode(roomLabels[plant.room]));
+      card.querySelector('.garden-meta .material-symbols-outlined').textContent = roomOptions[plant.room].icon;
+      card.querySelector('.garden-meta span:first-child').append(document.createTextNode(roomOptions[plant.room].label));
       card.hidden = activeRoom !== 'all' && activeRoom !== plant.room;
       document.getElementById('garden-grid').prepend(card);
       makePlantInteractive(card);
@@ -1857,12 +2083,12 @@
       showDetailToast(`${plant.commonName} adicionada ao seu Jardim.`);
     });
 
-    const taskCards = [...document.querySelectorAll('.care-task:not([data-complete="true"])')];
     function updatePendingCount() {
-      const pending = taskCards.filter((task) => task.dataset.done !== 'true').length;
+      const pending = [...document.querySelectorAll('.care-task:not([data-complete="true"])')]
+        .filter((task) => task.dataset.done !== 'true').length;
       document.getElementById('pending-count').textContent = String(pending);
     }
-    taskCards.forEach((task) => {
+    function bindCareTask(task) {
       const button = task.querySelector('.task-button');
       button.addEventListener('click', () => {
         const done = task.dataset.done !== 'true';
@@ -1872,19 +2098,44 @@
         button.querySelector('.material-symbols-outlined').textContent = done ? 'check_circle' : 'check';
         updatePendingCount();
       });
-    });
+    }
+    document.querySelectorAll('.care-task:not([data-complete="true"])').forEach(bindCareTask);
 
-    const roomFilters = [...document.querySelectorAll('.room-filter')];
     let activeRoom = 'all';
-    roomFilters.forEach((button) => {
-      button.addEventListener('click', () => {
-        activeRoom = button.dataset.room;
-        roomFilters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-        document.querySelectorAll('.garden-plant').forEach((plant) => {
-          plant.hidden = button.dataset.room !== 'all' && plant.dataset.room !== button.dataset.room;
+    const roomFilters = document.querySelector('.room-filters');
+    function renderRoomFilters() {
+      const plants = [...document.querySelectorAll('.garden-plant')];
+      const counts = plants.reduce((result, plant) => {
+        result[plant.dataset.room] = (result[plant.dataset.room] || 0) + 1;
+        return result;
+      }, {});
+      const availableRooms = Object.keys(roomOptions).filter((room) => counts[room]);
+      roomFilters.replaceChildren();
+      const options = [{ value: 'all', label: 'Todas', count: plants.length }, ...availableRooms.map((room) => ({
+        value: room,
+        label: roomOptions[room].label,
+        count: counts[room]
+      }))];
+      options.forEach((option) => {
+        const button = document.createElement('button');
+        button.className = 'room-filter';
+        button.type = 'button';
+        button.dataset.room = option.value;
+        button.setAttribute('aria-pressed', String(activeRoom === option.value));
+        button.textContent = `${option.label} (${option.count})`;
+        button.addEventListener('click', () => {
+          activeRoom = option.value;
+          roomFilters.querySelectorAll('.room-filter').forEach((filter) => {
+            filter.setAttribute('aria-pressed', String(filter.dataset.room === activeRoom));
+          });
+          document.querySelectorAll('.garden-plant').forEach((plant) => {
+            plant.hidden = activeRoom !== 'all' && plant.dataset.room !== activeRoom;
+          });
         });
+        roomFilters.append(button);
       });
-    });
+    }
+    renderRoomFilters();
 
     const addPlantDialog = document.getElementById('add-plant-dialog');
     document.getElementById('add-plant').addEventListener('click', () => addPlantDialog.showModal());
@@ -1894,16 +2145,40 @@
       const name = String(formData.get('name')).trim();
       const species = String(formData.get('species')).trim() || 'Espécie por identificar';
       const room = String(formData.get('room'));
-      const roomLabels = { sala: 'Sala', varanda: 'Varanda', quarto: 'Quarto' };
+      const plantKey = `custom-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      plantCare[plantKey] = {
+        name: species,
+        commonName: name,
+        image: 'https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=800&q=80',
+        description: `${name} adicionada ao seu jardim.`,
+        family: 'Por identificar',
+        origin: 'Por identificar',
+        habit: 'Planta de interior',
+        water: 'Verificar o substrato',
+        waterDetail: 'Verifique a humidade do substrato e regue de acordo com as necessidades desta espécie; evite deixar água acumulada.',
+        light: 'Luz adequada à espécie',
+        lightDetail: 'Observe a resposta da planta e ajuste a luminosidade, evitando mudanças bruscas e sol forte inesperado.',
+        climate: 'Ambiente estável',
+        climateDetail: 'Mantenha a planta afastada de correntes de ar e de fontes de calor ou frio intenso.',
+        safety: 'Por confirmar',
+        safetyDetail: 'Confirme se esta espécie é segura para crianças e animais de estimação.',
+        difficulty: 'Por avaliar',
+        difficultyDetail: 'Acompanhe a adaptação da planta e ajuste os cuidados às suas necessidades.',
+        room
+      };
       const card = document.createElement('article');
       card.className = 'garden-plant';
       card.dataset.room = room;
+      card.dataset.plantKey = plantKey;
       card.hidden = activeRoom !== 'all' && activeRoom !== room;
       card.innerHTML = '<div class="garden-plant-image"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdBANocXX216UsW1HwzmeiJPcS8LmFxGtfMlqlKCvTNpCJYN-D8oEEfowicMlNHUvW5KSbo2iZkRRtJ4Sax87_l-fXho36N-8l31nCZlPVmtQziWvPC8huEdjHqAf6vSuZV6qd7N7eypIc_fFPKtLAbe8pwyNXklSkDZshtaTTX0y5ogt_NMCbg3JXqAjQXq9PUTD-kgyOaFvOqtbyDinlsvIhAJMoHLLTktJjO8u_1aIdSKkVGsfq" alt="Folhagem da nova planta"><span class="plant-status">Saudável</span><span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">spa</span>Nova</span></div><div class="garden-plant-copy"><p class="garden-scientific"></p><h3 class="garden-plant-name"></h3><div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">chair</span></span><span>Adicionada hoje</span></div></div>';
       card.querySelector('.garden-scientific').textContent = species;
       card.querySelector('.garden-plant-name').textContent = name;
-      card.querySelector('.garden-meta span:first-child').append(document.createTextNode(roomLabels[room]));
+      card.querySelector('.garden-meta .material-symbols-outlined').textContent = roomOptions[room].icon;
+      card.querySelector('.garden-meta span:first-child').append(document.createTextNode(roomOptions[room].label));
       document.getElementById('garden-grid').prepend(card);
+      makePlantInteractive(card);
+      renderRoomFilters();
       document.getElementById('active-plant-count').textContent = String(Number(document.getElementById('active-plant-count').textContent) + 1);
       syncProfilePlantCount();
       event.currentTarget.reset();
