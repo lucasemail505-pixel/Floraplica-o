@@ -32,3 +32,5 @@ Sirva esta pasta através de `localhost` ou HTTPS. Abrir `flora.html` diretament
 4. Quando a ação terminar, abra **Settings → Pages** para obter o endereço. Para um repositório de projeto, será semelhante a `https://<utilizador>.github.io/<repositorio>/`.
 
 Os caminhos do site, manifesto e service worker são relativos, por isso funcionam tanto na raiz de um domínio GitHub Pages como no subdiretório de um repositório. O service worker atualiza a cache da PWA quando é publicada uma nova versão.
+
+As fotografias das plantas estão incluídas em `assets/` e são servidas pelo próprio site, em vez de dependerem de ligações externas. Os créditos e as licenças do Wikimedia Commons estão indicados na aplicação. Ao publicar, carregue a pasta `assets/` completa junto com os ficheiros HTML; o service worker guarda as imagens para utilização offline.

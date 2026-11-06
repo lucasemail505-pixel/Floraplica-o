@@ -80,15 +80,15 @@
     .welcome-brand .material-symbols-outlined { color: var(--secondary); font-size: 25px; }
     .welcome-hero {
       position: relative;
-      width: min(100%, 280px);
+      width: min(100%, 220px);
       aspect-ratio: 1;
       min-height: 0;
-      margin: 28px auto 24px;
+      margin: 18px auto;
       display: grid;
       place-items: center;
       overflow: hidden;
       border: 1px solid #d5e5c8;
-      border-radius: 50%;
+      border-radius: 48% 52% 56% 44% / 48% 44% 56% 52%;
       background:
         radial-gradient(circle at 50% 46%, #f5f8ed 0, #e5efd9 48%, #d4e6c6 100%);
     }
@@ -106,8 +106,8 @@
     .welcome-hero::after { right: 8%; top: -94px; transform: rotate(154deg); }
     .welcome-hero-mark {
       z-index: 1;
-      width: 164px;
-      height: 164px;
+      width: 136px;
+      height: 136px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(255, 255, 255, .85);
@@ -116,12 +116,18 @@
       color: var(--primary);
       box-shadow: 0 10px 28px rgba(37, 75, 56, .12);
     }
-    .welcome-hero-mark .material-symbols-outlined { font-size: 86px; font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 96; }
+    .welcome-hero-mark .material-symbols-outlined { font-size: 70px; font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 96; }
     .welcome-copy { text-align: center; }
     .welcome-kicker { color: var(--accent); font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-    .welcome-title { margin: 10px 0 8px; color: var(--primary); font: 500 39px/1.05 "Newsreader", serif; }
-    .welcome-description { max-width: 340px; margin: 0 auto; color: #59615b; font-size: 12px; line-height: 1.7; }
-    .welcome-actions { display: grid; gap: 10px; margin-top: 28px; }
+    .welcome-title { margin: 9px 0 7px; color: var(--primary); font: 500 36px/1.05 "Newsreader", serif; }
+    .welcome-description { max-width: 340px; margin: 0 auto; color: #59615b; font-size: 12px; line-height: 1.65; }
+    .welcome-benefits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 17px 0 0; padding: 0; list-style: none; }
+    .welcome-benefit { min-width: 0; padding: 11px 8px 10px; border: 1px solid var(--outline-soft); border-radius: 9px; background: rgba(244, 243, 228, .8); text-align: center; }
+    .welcome-benefit-icon { width: 30px; height: 30px; margin: 0 auto 6px; display: grid; place-items: center; border-radius: 50%; background: var(--secondary-soft); color: var(--primary); }
+    .welcome-benefit-icon .material-symbols-outlined { font-size: 17px; }
+    .welcome-benefit h2 { margin: 0 0 3px; color: var(--primary); font-size: 9px; font-weight: 700; line-height: 1.3; }
+    .welcome-benefit p { margin: 0; color: var(--muted); font-size: 8px; line-height: 1.4; }
+    .welcome-actions { display: grid; gap: 9px; margin-top: 18px; }
     .welcome-action { min-height: 48px; padding: 0 16px; display: flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid var(--primary); border-radius: 6px; background: var(--primary); color: white; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-decoration: none; cursor: pointer; transition: background 150ms ease, transform 150ms ease; }
     .welcome-action:hover { background: var(--primary-deep); }
     .welcome-action:active { transform: scale(.985); }
@@ -131,6 +137,15 @@
     .welcome-guest-link:hover { color: var(--primary-deep); }
     .welcome-guest-link:focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; }
     .welcome-caption { margin: 14px 0 0; color: var(--muted); font-size: 8px; letter-spacing: .06em; text-align: center; }
+    @media (max-height: 740px) {
+      .welcome-hero { width: min(100%, 180px); margin: 12px auto; }
+      .welcome-hero-mark { width: 116px; height: 116px; }
+      .welcome-hero-mark .material-symbols-outlined { font-size: 60px; }
+      .welcome-benefits { margin-top: 12px; }
+      .welcome-benefit { padding: 8px 6px; }
+      .welcome-benefit-icon { width: 26px; height: 26px; margin-bottom: 4px; }
+      .welcome-actions { margin-top: 13px; }
+    }
     .signup-shell { justify-content: space-between; }
     .signup-back { width: fit-content; min-height: 38px; padding: 0 10px; display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--outline-soft); border-radius: 6px; background: var(--surface-low); color: var(--primary); font-size: 10px; font-weight: 600; cursor: pointer; }
     .signup-back .material-symbols-outlined { font-size: 17px; }
@@ -349,6 +364,8 @@
       border-radius: 8px;
       background: var(--surface-low);
     }
+    .feature-card[data-plant-key], .plant-card[data-plant-key], .care-task[data-plant-key], .garden-plant[data-plant-key], .profile-favorite[data-plant-key] { cursor: pointer; }
+    .feature-card[data-plant-key]:focus-visible, .plant-card[data-plant-key]:focus-visible, .care-task[data-plant-key]:focus-visible, .garden-plant[data-plant-key]:focus-visible, .profile-favorite[data-plant-key]:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
     .feature-card { padding: 12px; }
     .feature-image-wrap, .plant-image-wrap {
       position: relative;
@@ -650,6 +667,7 @@
     .detail-ref-row span:first-child { color: var(--secondary); font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
     .detail-species { margin: 12px 0 2px; color: var(--primary); font: italic 500 33px/1.12 "Newsreader", serif; overflow-wrap: anywhere; }
     .detail-common-name { margin: 0; color: #59615b; font: 500 17px/1.35 "Newsreader", serif; }
+    .detail-summary { margin: 10px 0 0; color: #59615b; font-size: 11px; line-height: 1.65; }
     .taxonomy-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
     .taxonomy-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border: 1px solid rgba(77, 113, 99, .25); border-radius: 999px; background: var(--surface-low); color: var(--primary); font-size: 9px; }
     .taxonomy-chip .material-symbols-outlined { color: var(--secondary); font-size: 15px; }
@@ -660,6 +678,7 @@
     .vital-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
     .vital-card { min-height: 128px; padding: 11px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--outline-soft); border-radius: 6px; background: var(--surface-low); }
     .vital-card.toxicity { border-color: rgba(255, 180, 161, .65); }
+    .vital-card.difficulty { border-color: rgba(98, 130, 77, .35); background: #f0f3e7; }
     .vital-top { display: flex; align-items: center; justify-content: space-between; gap: 5px; margin-bottom: 10px; color: var(--secondary); font-size: 8px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
     .vital-top .material-symbols-outlined { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 50%; background: var(--secondary-soft); font-size: 16px; }
     .toxicity .vital-top { color: #78452e; }
@@ -737,10 +756,27 @@
         <div class="welcome-hero-mark"><span class="material-symbols-outlined">potted_plant</span></div>
       </div>
       <section class="welcome-copy">
-        <span class="welcome-kicker">O seu arquivo botânico</span>
-        <h1 id="welcome-title" class="welcome-title" tabindex="-1">Cultive a sua ligação à natureza.</h1>
-        <p class="welcome-description">Descubra espécies, acompanhe o seu jardim e guarde cada novo achado num só lugar.</p>
+        <span class="welcome-kicker">O seu herbário digital</span>
+        <h1 id="welcome-title" class="welcome-title" tabindex="-1">Cultive o seu jardim, ao seu ritmo.</h1>
+        <p class="welcome-description">Descubra espécies, organize os cuidados e acompanhe cada planta num só lugar.</p>
       </section>
+      <ul class="welcome-benefits" aria-label="O que pode fazer no Herbarium">
+        <li class="welcome-benefit">
+          <span class="welcome-benefit-icon"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span></span>
+          <h2>Explore</h2>
+          <p>Espécies e dicas de cultivo</p>
+        </li>
+        <li class="welcome-benefit">
+          <span class="welcome-benefit-icon"><span class="material-symbols-outlined" aria-hidden="true">water_drop</span></span>
+          <h2>Cuide</h2>
+          <p>Rotinas para as suas plantas</p>
+        </li>
+        <li class="welcome-benefit">
+          <span class="welcome-benefit-icon"><span class="material-symbols-outlined" aria-hidden="true">yard</span></span>
+          <h2>Organize</h2>
+          <p>O seu jardim num só lugar</p>
+        </li>
+      </ul>
       <div class="welcome-actions">
         <button id="welcome-login" class="welcome-action" type="button">Entrar<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></button>
         <button id="welcome-signup" class="welcome-action secondary" type="button">Criar conta</button>
@@ -895,7 +931,7 @@
         </div>
         <span class="sheet-number">Folha Nº 142</span>
       </div>
-      <article class="feature-card">
+      <article class="feature-card" data-plant-key="prunus-serrulata">
         <div class="feature-image-wrap">
           <img src="./assets/prunus-serrulata.png" alt="Flores rosa-pálidas de Prunus serrulata na primavera">
           <span class="family-label">Família Rosaceae</span>
@@ -936,7 +972,7 @@
         <span id="result-count" class="count" aria-live="polite">4 Registo(s)</span>
       </div>
       <div class="plant-list" id="plant-list">
-        <article class="plant-card" data-category="indoor" data-search="monstera adansonii araceae costela-de-adão mini folhas trepadeira luz indireta">
+        <article class="plant-card" data-plant-key="monstera-adansonii" data-category="indoor" data-search="monstera adansonii araceae costela-de-adão mini folhas trepadeira luz indireta">
           <div class="plant-image-wrap">
             <img src="./assets/monstera-adansonii.jpg" alt="Folhas perfuradas de Monstera adansonii">
             <span class="family-small">Araceae</span>
@@ -953,7 +989,7 @@
           </div>
         </article>
 
-        <article class="plant-card" data-category="flowers" data-search="lírio lirio lilium liliaceae flores brancas sol meia-sombra">
+        <article class="plant-card" data-plant-key="lilium" data-category="flowers" data-search="lírio lirio lilium liliaceae flores brancas sol meia-sombra">
           <div class="plant-image-wrap">
             <img src="./assets/lirio.png" alt="Lírios brancos em flor no jardim">
             <span class="family-small">Liliaceae</span>
@@ -969,7 +1005,7 @@
           </div>
         </article>
 
-        <article class="plant-card" data-category="indoor" data-search="antúrio anthurium andraeanum araceae flores coloridas interior luz indireta">
+        <article class="plant-card" data-plant-key="anthurium" data-category="indoor" data-search="antúrio anthurium andraeanum araceae flores coloridas interior luz indireta">
           <div class="plant-image-wrap">
             <img src="./assets/anthurium.jpg" alt="Antúrio com espata vermelha e folhas verdes">
             <span class="family-small">Araceae</span>
@@ -986,7 +1022,7 @@
           </div>
         </article>
 
-        <article class="plant-card" data-category="indoor" data-search="maranta maranta leuconeura marantaceae planta rezadeira folhas decorativas meia-sombra interior">
+        <article class="plant-card" data-plant-key="maranta" data-category="indoor" data-search="maranta maranta leuconeura marantaceae planta rezadeira folhas decorativas meia-sombra interior">
           <div class="plant-image-wrap">
             <img src="./assets/maranta-leuconeura.jpg" alt="Folhas ornamentais de Maranta leuconeura">
             <span class="family-small">Marantaceae</span>
@@ -1030,7 +1066,7 @@
         <span class="routine-label">Rotina Diária</span>
       </div>
       <div class="task-list">
-        <article class="care-task" data-done="false">
+        <article class="care-task" data-plant-key="prunus-serrulata" data-done="false">
           <div class="task-plant">
             <div class="task-thumb"><img src="./assets/prunus-serrulata.png" alt="Flores de Prunus serrulata"></div>
             <div class="task-copy">
@@ -1040,7 +1076,7 @@
           </div>
           <button class="task-button" type="button" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">check</span><span>Verificado</span></button>
         </article>
-        <article class="care-task" data-done="false">
+        <article class="care-task" data-plant-key="maranta" data-done="false">
           <div class="task-plant">
             <div class="task-thumb"><img src="./assets/maranta-leuconeura.jpg" alt="Folhas de Maranta leuconeura"></div>
             <div class="task-copy">
@@ -1050,7 +1086,7 @@
           </div>
           <button class="task-button" type="button" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">check</span><span>Feito</span></button>
         </article>
-        <article class="care-task" data-complete="true">
+        <article class="care-task" data-plant-key="monstera-adansonii" data-complete="true">
           <div class="task-plant">
             <div class="task-thumb"><img src="./assets/monstera-adansonii.jpg" alt="Folhas de Monstera adansonii"></div>
             <div class="task-copy">
@@ -1086,7 +1122,7 @@
             <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span>Varanda</span><span>Floração primaveril</span></div>
           </div>
         </article>
-        <article class="garden-plant" data-room="quarto">
+        <article class="garden-plant" data-room="quarto" data-plant-key="maranta">
           <div class="garden-plant-image">
             <img src="./assets/maranta-leuconeura.jpg" alt="Maranta-pena-de-pavão num vaso">
             <span class="plant-status">Saudável</span>
@@ -1097,7 +1133,7 @@
             <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">bed</span>Quarto</span><span>Rega ontem</span></div>
           </div>
         </article>
-        <article class="garden-plant" data-room="sala">
+        <article class="garden-plant" data-room="sala" data-plant-key="monstera-adansonii">
           <div class="garden-plant-image">
             <img src="./assets/monstera-adansonii.jpg" alt="Monstera adansonii junto a uma janela">
             <span class="plant-status">Saudável</span>
@@ -1108,7 +1144,7 @@
             <div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">desk</span>Escritório</span><span>Rega há 2 dias</span></div>
           </div>
         </article>
-        <article class="garden-plant" data-room="varanda">
+        <article class="garden-plant" data-room="varanda" data-plant-key="alecrim">
           <div class="garden-plant-image">
             <img src="./assets/alecrim.jpg" alt="Alecrim em floração no exterior">
             <span class="plant-status">Saudável</span>
@@ -1201,10 +1237,10 @@
         <button class="profile-section-meta" id="profile-see-plants" type="button" style="border:0;background:none;cursor:pointer">Ver 4 plantas</button>
       </div>
       <div class="profile-favorites">
-        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/prunus-serrulata.png" alt="Flores de Prunus serrulata"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Prunus serrulata</p><h3 class="favorite-name">Cerejeira-japonesa</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Sol pleno · Exterior</div></article>
-        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/monstera-adansonii.jpg" alt="Folhas de Monstera adansonii"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Monstera adansonii</p><h3 class="favorite-name">Monstera-de-Adanson</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">light_mode</span>Luz indireta</div></article>
-        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/anthurium.jpg" alt="Antúrio com flores vermelhas"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Anthurium andraeanum</p><h3 class="favorite-name">Antúrio</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Luz indireta</div></article>
-        <article class="profile-favorite"><div class="favorite-image"><img src="./assets/maranta-leuconeura.jpg" alt="Folhas de Maranta leuconeura"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Maranta leuconeura</p><h3 class="favorite-name">Maranta-pena-de-pavão</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">humidity_percentage</span>Humidade alta</div></article>
+        <article class="profile-favorite" data-plant-key="prunus-serrulata"><div class="favorite-image"><img src="./assets/prunus-serrulata.png" alt="Flores de Prunus serrulata"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Prunus serrulata</p><h3 class="favorite-name">Cerejeira-japonesa</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Sol pleno · Exterior</div></article>
+        <article class="profile-favorite" data-plant-key="monstera-adansonii"><div class="favorite-image"><img src="./assets/monstera-adansonii.jpg" alt="Folhas de Monstera adansonii"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Monstera adansonii</p><h3 class="favorite-name">Monstera-de-Adanson</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">light_mode</span>Luz indireta</div></article>
+        <article class="profile-favorite" data-plant-key="anthurium"><div class="favorite-image"><img src="./assets/anthurium.jpg" alt="Antúrio com flores vermelhas"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Anthurium andraeanum</p><h3 class="favorite-name">Antúrio</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">wb_sunny</span>Luz indireta</div></article>
+        <article class="profile-favorite" data-plant-key="maranta"><div class="favorite-image"><img src="./assets/maranta-leuconeura.jpg" alt="Folhas de Maranta leuconeura"><span class="favorite-heart"><span class="material-symbols-outlined" aria-hidden="true">favorite</span></span></div><p class="favorite-species">Maranta leuconeura</p><h3 class="favorite-name">Maranta-pena-de-pavão</h3><div class="favorite-care"><span class="material-symbols-outlined" aria-hidden="true">humidity_percentage</span>Humidade alta</div></article>
       </div>
     </section>
 
@@ -1243,6 +1279,7 @@
         <div class="detail-ref-row"><span>Catálogo de Espécimes Vivos</span><span>Ref. Rosaceae 1912</span></div>
         <h1 class="detail-species">Prunus serrulata</h1>
         <p class="detail-common-name">Cerejeira-japonesa · Sakura</p>
+        <p class="detail-summary">Árvore ornamental originária da Ásia Oriental, cultivada pelas suas abundantes flores rosa ou brancas no início da primavera.</p>
         <div class="taxonomy-chips">
           <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">nature</span>Família: Rosaceae</span>
           <span class="taxonomy-chip"><span class="material-symbols-outlined" aria-hidden="true">public</span>Origem: Ásia Oriental</span>
@@ -1272,10 +1309,14 @@
             <div class="vital-top">Toxicidade<span class="material-symbols-outlined" aria-hidden="true">warning</span></div>
             <div><span class="toxicity-tag">Não ingerir</span><p class="vital-detail">As sementes e folhas não devem ser ingeridas; mantenha-as fora do alcance de crianças e animais.</p></div>
           </article>
+          <article class="vital-card difficulty">
+            <div class="vital-top">Dificuldade<span class="material-symbols-outlined" aria-hidden="true">psychology</span></div>
+            <div><p class="vital-value">Moderada</p><p class="vital-detail">Com sol e rega equilibrada, adapta-se bem ao exterior.</p></div>
+          </article>
         </div>
       </section>
 
-      <section aria-labelledby="species-guide-title">
+      <section id="species-guide" aria-labelledby="species-guide-title">
         <div class="detail-section-heading">
           <h2 id="species-guide-title" class="detail-section-title"><span class="material-symbols-outlined" aria-hidden="true">menu_book</span>Guia Botânico da Espécie</h2>
           <span class="protocol-label">Monografia #27</span>
@@ -1312,7 +1353,7 @@
         </details>
       </section>
 
-      <aside class="curator-note">
+      <aside id="curator-note" class="curator-note">
         <h2 class="curator-note-title"><span class="material-symbols-outlined" aria-hidden="true">history_edu</span>Nota de Coleta do Curador</h2>
         <blockquote class="curator-quote">“A floração delicada da cerejeira anuncia a primavera e transforma os ramos nus numa nuvem de pétalas rosadas.”</blockquote>
         <div class="curator-attribution"><span>Dr. Aureliano Silva · Herbário Central</span><span>12 de Outubro</span></div>
@@ -1452,6 +1493,129 @@
     const gardenView = document.getElementById('garden');
     const profileView = document.getElementById('profile');
     const detailView = document.getElementById('plant-detail');
+    const plantCare = {
+      'prunus-serrulata': {
+        name: 'Prunus serrulata',
+        commonName: 'Cerejeira-japonesa · Sakura',
+        image: './assets/prunus-serrulata.png',
+        description: 'Árvore ornamental originária da Ásia Oriental, cultivada pelas suas abundantes flores rosa ou brancas no início da primavera.',
+        family: 'Rosaceae',
+        origin: 'Ásia Oriental',
+        habit: 'Árvore caducifólia',
+        water: 'Regular no crescimento',
+        waterDetail: 'Regue sobretudo as árvores jovens quando o solo começar a secar; evite encharcar.',
+        light: 'Sol pleno',
+        lightDetail: 'Escolha um local exterior soalheiro para favorecer a floração.',
+        climate: 'Clima temperado',
+        climateDetail: 'Árvore caducifólia resistente ao frio do inverno, com floração na primavera.',
+        safety: 'Não ingerir',
+        safetyDetail: 'As sementes e folhas não devem ser ingeridas; mantenha-as fora do alcance de crianças e animais.',
+        difficulty: 'Moderada',
+        difficultyDetail: 'Com sol e rega equilibrada, adapta-se bem ao exterior.',
+        room: 'varanda'
+      },
+      'monstera-adansonii': {
+        name: 'Monstera adansonii',
+        commonName: 'Monstera-de-Adanson',
+        image: './assets/monstera-adansonii.jpg',
+        description: 'Trepadeira tropical de folhas perfuradas, ideal para interiores luminosos e húmidos.',
+        family: 'Araceae',
+        origin: 'América Central e do Sul',
+        habit: 'Trepadeira tropical',
+        water: 'Quando a superfície secar',
+        waterDetail: 'Regue quando os primeiros centímetros do substrato estiverem secos; não deixe água acumulada no prato.',
+        light: 'Luz indireta brilhante',
+        lightDetail: 'Prefere claridade abundante sem sol direto forte nas folhas.',
+        climate: 'Ambiente quente',
+        climateDetail: 'Mantenha-a num local ameno, longe de correntes de ar frio.',
+        safety: 'Tóxica se ingerida',
+        safetyDetail: 'Mantenha fora do alcance de crianças e animais de estimação.',
+        difficulty: 'Fácil a moderada',
+        difficultyDetail: 'Cresce bem com luz indireta, rega equilibrada e apoio para trepar.',
+        room: 'sala'
+      },
+      lilium: {
+        name: 'Lilium spp.',
+        commonName: 'Lírio',
+        image: './assets/lirio.png',
+        description: 'Planta ornamental de flores grandes e perfumadas, que floresce na primavera e no verão.',
+        family: 'Liliaceae',
+        origin: 'Regiões temperadas do Hemisfério Norte',
+        habit: 'Planta bulbosa',
+        water: 'Solo húmido, sem encharcar',
+        waterDetail: 'Regue quando a superfície começar a secar e garanta boa drenagem, sobretudo durante a floração.',
+        light: 'Sol ou meia-sombra',
+        lightDetail: 'Dê-lhe algumas horas de sol e proteja a base do calor excessivo.',
+        climate: 'Clima ameno',
+        climateDetail: 'Prefere estações frescas e substrato drenado.',
+        safety: 'Muito tóxico para gatos',
+        safetyDetail: 'Todas as partes do lírio podem ser perigosas para gatos; mantenha a planta afastada.',
+        difficulty: 'Moderada',
+        difficultyDetail: 'Requer atenção à drenagem, à rega e ao ciclo sazonal do bolbo.',
+        room: 'varanda'
+      },
+      anthurium: {
+        name: 'Anthurium andraeanum',
+        commonName: 'Antúrio',
+        image: './assets/anthurium.jpg',
+        description: 'Planta tropical reconhecida pelas espatas vistosas e brilhantes, que podem florir durante grande parte do ano.',
+        family: 'Araceae',
+        origin: 'América Central e do Sul',
+        habit: 'Herbácea tropical',
+        water: 'Quando o topo do solo secar',
+        waterDetail: 'Regue sem encharcar e deixe escorrer o excesso; aumente a atenção em tempo quente.',
+        light: 'Luz indireta brilhante',
+        lightDetail: 'Evite o sol direto, que pode queimar as folhas.',
+        climate: 'Quente e húmido',
+        climateDetail: 'Aprecia temperaturas amenas e humidade elevada.',
+        safety: 'Irritante se ingerido',
+        safetyDetail: 'A seiva pode irritar; mantenha longe de crianças e animais.',
+        difficulty: 'Moderada',
+        difficultyDetail: 'Precisa de luz filtrada, humidade e rega sem excesso.',
+        room: 'sala'
+      },
+      maranta: {
+        name: 'Maranta leuconeura',
+        commonName: 'Maranta-pena-de-pavão',
+        image: './assets/maranta-leuconeura.jpg',
+        description: 'Planta de interior com folhas desenhadas que se elevam ao anoitecer; aprecia humidade e luz suave.',
+        family: 'Marantaceae',
+        origin: 'Brasil',
+        habit: 'Herbácea tropical',
+        water: 'Manter ligeiramente húmido',
+        waterDetail: 'Regue quando a superfície começar a secar; evite deixar o substrato secar por completo.',
+        light: 'Luz indireta suave',
+        lightDetail: 'Proteja as folhas do sol direto e forte.',
+        climate: 'Quente e húmido',
+        climateDetail: 'Aprecia humidade no ar e deve ficar longe de correntes frias.',
+        safety: 'Não tóxica',
+        safetyDetail: 'É geralmente considerada segura para animais de estimação.',
+        difficulty: 'Moderada',
+        difficultyDetail: 'Precisa de rega regular e humidade constante, sem encharcar.',
+        room: 'quarto'
+      },
+      alecrim: {
+        name: 'Salvia rosmarinus',
+        commonName: 'Alecrim',
+        image: './assets/alecrim.jpg',
+        description: 'Arbusto mediterrânico aromático, resistente à seca e apreciador de sol e solos bem drenados.',
+        family: 'Lamiaceae',
+        origin: 'Região mediterrânica',
+        habit: 'Arbusto aromático',
+        water: 'Pouco frequente',
+        waterDetail: 'Deixe o substrato secar entre regas; reduza a frequência em tempo fresco.',
+        light: 'Sol direto',
+        lightDetail: 'Prefere várias horas de sol direto por dia.',
+        climate: 'Quente e seco',
+        climateDetail: 'Adapta-se bem ao exterior e precisa de solo muito bem drenado.',
+        safety: 'Uso culinário habitual',
+        safetyDetail: 'Mantenha a planta fora do alcance de animais que possam mastigar grandes quantidades.',
+        difficulty: 'Fácil',
+        difficultyDetail: 'É resistente quando recebe sol abundante e não fica com as raízes encharcadas.',
+        room: 'varanda'
+      }
+    };
+    let activePlantKey = 'prunus-serrulata';
     const detailActions = document.getElementById('detail-actions');
     const bottomNavigation = document.querySelector('.bottom-nav');
     const navigationButtons = [...document.querySelectorAll('.nav-item[data-view]')];
@@ -1484,7 +1648,72 @@
     });
     document.getElementById('profile-see-plants').addEventListener('click', () => showAppView('herbario'));
 
-    document.getElementById('open-monograph').addEventListener('click', () => showAppView('detail'));
+    function openPlantDetails(plantKey) {
+      const plant = plantCare[plantKey];
+      if (!plant) {
+        console.error(`Não existem cuidados registados para a planta "${plantKey}".`);
+        return;
+      }
+      activePlantKey = plantKey;
+      detailView.querySelector('.detail-hero > img').src = plant.image;
+      detailView.querySelector('.detail-hero > img').alt = plant.description;
+      detailView.querySelector('.detail-species').textContent = plant.name;
+      detailView.querySelector('.detail-common-name').textContent = plant.commonName;
+      detailView.querySelector('.detail-summary').textContent = plant.description;
+      detailView.setAttribute('aria-label', `Cuidados de ${plant.name}`);
+      const taxonomy = detailView.querySelectorAll('.taxonomy-chip');
+      taxonomy[0].lastChild.textContent = `Família: ${plant.family}`;
+      taxonomy[1].lastChild.textContent = `Origem: ${plant.origin}`;
+      taxonomy[2].lastChild.textContent = `Hábito: ${plant.habit}`;
+
+      const vitalCards = detailView.querySelectorAll('.vital-card');
+      const updateVital = (card, title, icon, value, detail) => {
+        const heading = card.querySelector('.vital-top');
+        heading.firstChild.textContent = title;
+        heading.querySelector('.material-symbols-outlined').textContent = icon;
+        card.querySelector('.vital-value').textContent = value;
+        card.querySelector('.vital-detail').textContent = detail;
+      };
+      updateVital(vitalCards[0], 'Rega', 'water_drop', plant.water, plant.waterDetail);
+      updateVital(vitalCards[1], 'Luminosidade', 'wb_sunny', plant.light, plant.lightDetail);
+      updateVital(vitalCards[2], 'Ambiente', 'device_thermostat', plant.climate, plant.climateDetail);
+      const safetyCard = vitalCards[3];
+      safetyCard.querySelector('.vital-top').firstChild.textContent = 'Segurança';
+      safetyCard.querySelector('.toxicity-tag').textContent = plant.safety;
+      safetyCard.querySelector('.vital-detail').textContent = plant.safetyDetail;
+      updateVital(vitalCards[4], 'Dificuldade', 'psychology', plant.difficulty, plant.difficultyDetail);
+
+      const isSakura = plantKey === 'prunus-serrulata';
+      document.getElementById('species-guide').hidden = !isSakura;
+      document.getElementById('curator-note').hidden = !isSakura;
+      const favoriteButton = document.getElementById('detail-favorite');
+      const isFavorite = Boolean(document.querySelector(`.profile-favorite[data-plant-key="${plantKey}"]`));
+      favoriteButton.setAttribute('aria-pressed', String(isFavorite));
+      favoriteButton.setAttribute('aria-label', isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+      showAppView('detail');
+      detailView.querySelector('.detail-hero-actions > button:first-child').focus();
+    }
+
+    function makePlantInteractive(element) {
+      const plant = plantCare[element.dataset.plantKey];
+      if (!plant || element.dataset.interactive === 'true') return;
+      element.dataset.interactive = 'true';
+      element.tabIndex = 0;
+      element.setAttribute('role', 'button');
+      element.setAttribute('aria-label', `Ver os cuidados de ${plant.commonName}`);
+      element.addEventListener('click', (event) => {
+        if (event.target.closest('button, a')) return;
+        openPlantDetails(element.dataset.plantKey);
+      });
+      element.addEventListener('keydown', (event) => {
+        if (event.target !== element || (event.key !== 'Enter' && event.key !== ' ')) return;
+        event.preventDefault();
+        openPlantDetails(element.dataset.plantKey);
+      });
+    }
+
+    document.querySelectorAll('[data-plant-key]').forEach(makePlantInteractive);
+    document.getElementById('open-monograph').addEventListener('click', () => openPlantDetails('prunus-serrulata'));
     document.getElementById('detail-back').addEventListener('click', () => showAppView('herbario'));
 
     const detailToast = document.getElementById('detail-toast');
@@ -1505,7 +1734,8 @@
     });
 
     document.getElementById('detail-share').addEventListener('click', async () => {
-      const shareData = { title: 'Prunus serrulata', text: 'Monografia botânica da cerejeira-japonesa.' };
+      const plant = plantCare[activePlantKey];
+      const shareData = { title: plant.name, text: `Cuidados botânicos de ${plant.commonName}.` };
       if (navigator.share) {
         try {
           await navigator.share(shareData);
@@ -1518,28 +1748,38 @@
     });
 
     document.getElementById('detail-water-alert').addEventListener('click', () => {
-      showDetailToast('Lembrete de rega configurado para a cerejeira-japonesa.');
+      showDetailToast(`Lembrete de rega configurado para ${plantCare[activePlantKey].commonName}.`);
     });
 
     document.getElementById('detail-add-garden').addEventListener('click', () => {
-      const existingPrunus = document.querySelector('.garden-plant[data-plant-key="prunus-serrulata"]');
-      if (existingPrunus) {
-        showDetailToast('A cerejeira-japonesa já faz parte do seu Jardim.');
+      const plant = plantCare[activePlantKey];
+      const existingPlant = document.querySelector(`.garden-plant[data-plant-key="${activePlantKey}"]`);
+      if (existingPlant) {
+        showDetailToast(`${plant.commonName} já faz parte do seu Jardim.`);
         showAppView('garden');
         return;
       }
 
       const card = document.createElement('article');
       card.className = 'garden-plant';
-      card.dataset.room = 'varanda';
-      card.dataset.plantKey = 'prunus-serrulata';
-      card.innerHTML = '<div class="garden-plant-image"><img src="./assets/prunus-serrulata.png" alt="Flores da cerejeira-japonesa"><span class="plant-status">Saudável</span><span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">local_florist</span>Floração</span></div><div class="garden-plant-copy"><p class="garden-scientific">Prunus serrulata</p><h3 class="garden-plant-name">Cerejeira-japonesa</h3><div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span>Varanda</span><span>Adicionada hoje</span></div></div>';
-      card.hidden = activeRoom !== 'all' && activeRoom !== 'varanda';
+      card.dataset.room = plant.room;
+      card.dataset.plantKey = activePlantKey;
+      card.innerHTML = '<div class="garden-plant-image"><img alt=""><span class="plant-status">Saudável</span><span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">local_florist</span>Nova</span></div><div class="garden-plant-copy"><p class="garden-scientific"></p><h3 class="garden-plant-name"></h3><div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span></span><span>Adicionada hoje</span></div></div>';
+      const roomLabels = { sala: 'Sala', varanda: 'Varanda', quarto: 'Quarto' };
+      const roomIcons = { sala: 'chair', varanda: 'balcony', quarto: 'bed' };
+      card.querySelector('.garden-plant-image img').src = plant.image;
+      card.querySelector('.garden-plant-image img').alt = plant.commonName;
+      card.querySelector('.garden-scientific').textContent = plant.name;
+      card.querySelector('.garden-plant-name').textContent = plant.commonName;
+      card.querySelector('.garden-meta .material-symbols-outlined').textContent = roomIcons[plant.room];
+      card.querySelector('.garden-meta span:first-child').append(document.createTextNode(roomLabels[plant.room]));
+      card.hidden = activeRoom !== 'all' && activeRoom !== plant.room;
       document.getElementById('garden-grid').prepend(card);
+      makePlantInteractive(card);
       document.getElementById('active-plant-count').textContent = String(Number(document.getElementById('active-plant-count').textContent) + 1);
       syncProfilePlantCount();
       showAppView('garden');
-      showDetailToast('Cerejeira-japonesa adicionada ao seu Jardim.');
+      showDetailToast(`${plant.commonName} adicionada ao seu Jardim.`);
     });
 
     const taskCards = [...document.querySelectorAll('.care-task:not([data-complete="true"])')];
