@@ -592,6 +592,8 @@
     .profile-metric { min-width: 0; padding: 8px 4px; border: 1px solid var(--outline-soft); border-radius: 5px; background: var(--surface); }
     .metric-value { display: flex; align-items: center; justify-content: center; gap: 3px; color: var(--primary); font: 600 19px/1.2 "Newsreader", serif; }
     .metric-value .material-symbols-outlined { color: var(--secondary); font-size: 14px; }
+    #profile-streak .metric-value { position: relative; }
+    #profile-streak .metric-value .material-symbols-outlined { position: absolute; top: 50%; left: calc(50% - 21px); transform: translateY(-50%); }
     .metric-label { display: block; margin-top: 3px; color: var(--muted); font-size: 7px; font-weight: 700; letter-spacing: .06em; line-height: 1.4; text-transform: uppercase; }
     .profile-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 10px; margin-bottom: 9px; }
     .profile-eyebrow { display: block; margin-bottom: 2px; color: var(--muted); font-size: 8px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
@@ -733,6 +735,15 @@
     #add-plant-form label { margin-top: 5px; color: var(--primary); font-size: 11px; font-weight: 700; }
     #add-plant-form input, #add-plant-form select { width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--outline); border-radius: 4px; background: white; color: var(--text); font-size: 12px; }
     #add-plant-form .dialog-close { margin-top: 9px; }
+    #identify-plant-dialog form { display: grid; gap: 10px; }
+    #identify-plant-dialog label { color: var(--primary); font-size: 11px; font-weight: 700; }
+    #identify-photo, #identify-species { width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--outline); border-radius: 4px; background: white; color: var(--text); font-size: 12px; }
+    #identify-photo-preview { display: block; width: 100%; max-height: 240px; border-radius: 5px; object-fit: contain; background: var(--surface-mid); }
+    #identify-photo-preview[hidden] { display: none; }
+    #identify-feedback { min-height: 18px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    #identify-feedback[data-error="true"] { color: #9b3c2b; }
+    #identify-plant-dialog .dialog-close { justify-content: space-between; gap: 8px; margin-top: 4px; }
+    #identify-plant-dialog .dialog-close button[type="button"] { border: 1px solid var(--outline); background: transparent; color: var(--primary); }
     @media (min-width: 520px) {
       body { padding-bottom: 100px; }
       main { padding-top: 22px; }
@@ -1174,14 +1185,13 @@
           <span class="verified-badge" aria-label="Perfil verificado"><span class="material-symbols-outlined" aria-hidden="true">verified</span></span>
         </div>
         <div class="profile-copy">
-          <div class="profile-name-row"><h1 class="profile-name" id="profile-name">Utilizador</h1><span class="profile-folio">FOLIO #284</span></div>
-          <span class="profile-rank"><span class="material-symbols-outlined" aria-hidden="true">spa</span>Jardineiro Curador · Nível 4</span>
-          <p class="profile-specialty">Especialista em flora Macaronésia &amp; Araceae</p>
+          <div class="profile-name-row"><h1 class="profile-name" id="profile-name">Utilizador</h1><span class="profile-folio">FOLIO #252</span></div>
+          <span class="profile-rank"><span class="material-symbols-outlined" aria-hidden="true">spa</span>Jardineiro Curador · Nível 1</span>
         </div>
       </div>
       <div class="profile-metrics" aria-label="Estatísticas do perfil">
         <div class="profile-metric"><span class="metric-value">14</span><span class="metric-label">Espécies identificadas</span></div>
-        <div class="profile-metric"><span class="metric-value"><span class="material-symbols-outlined" aria-hidden="true">local_fire_department</span>42</span><span class="metric-label">Dias de sequência</span></div>
+        <div id="profile-streak" class="profile-metric"><span class="metric-value"><span class="material-symbols-outlined" aria-hidden="true">local_fire_department</span>1</span><span class="metric-label">Dias de sequência</span></div>
         <div class="profile-metric"><span class="metric-value" id="profile-plant-count">6</span><span class="metric-label">Plantas no Jardim</span></div>
       </div>
     </section>
@@ -1375,7 +1385,7 @@
     <button class="nav-item" type="button" data-view="garden" aria-label="O Meu Jardim">
       <span class="material-symbols-outlined" aria-hidden="true">yard</span><span>Meu Jardim</span>
     </button>
-    <button class="nav-item" type="button" aria-label="Identificar">
+    <button id="identify-plant" class="nav-item" type="button" aria-label="Identificar">
       <span class="material-symbols-outlined" aria-hidden="true">document_scanner</span><span>Identificar</span>
     </button>
     <button class="nav-item" type="button" data-view="profile" aria-label="Perfil">
@@ -1403,6 +1413,19 @@
         <option value="sala">Sala de Estar</option><option value="varanda">Varanda / Exterior</option><option value="quarto">Quarto</option>
       </select>
       <div class="dialog-close"><button type="submit">Adicionar</button></div>
+    </form>
+  </dialog>
+  <dialog id="identify-plant-dialog" aria-labelledby="identify-plant-title">
+    <h2 id="identify-plant-title">Fotografia da planta</h2>
+    <p>Escolha uma fotografia da galeria ou dos ficheiros do dispositivo.</p>
+    <form id="identify-plant-form">
+      <label for="identify-photo">Fotografia da planta</label>
+      <input id="identify-photo" name="photo" type="file" accept="image/*">
+      <img id="identify-photo-preview" alt="Pré-visualização da fotografia escolhida" hidden>
+      <p id="identify-feedback" role="status" aria-live="polite">A fotografia é apenas pré-visualizada; a espécie não é identificada automaticamente.</p>
+      <div class="dialog-close">
+        <button type="button" id="identify-cancel">Fechar</button>
+      </div>
     </form>
   </dialog>
   </div>
@@ -1615,6 +1638,56 @@
       }
     };
     let activePlantKey = 'prunus-serrulata';
+    let activePlantPhoto = '';
+    let identificationPhotoUrl = '';
+    const identifyDialog = document.getElementById('identify-plant-dialog');
+    const identifyPhotoInput = document.getElementById('identify-photo');
+    const identifyPhotoPreview = document.getElementById('identify-photo-preview');
+    const identifyFeedback = document.getElementById('identify-feedback');
+
+    document.getElementById('identify-plant').addEventListener('click', () => identifyDialog.showModal());
+    document.getElementById('identify-cancel').addEventListener('click', () => identifyDialog.close());
+    identifyPhotoInput.addEventListener('change', () => {
+      const file = identifyPhotoInput.files[0];
+      identifyFeedback.textContent = 'A fotografia é apenas pré-visualizada; a espécie não é identificada automaticamente.';
+      identifyFeedback.dataset.error = 'false';
+      if (!file) {
+        identifyPhotoPreview.hidden = true;
+        identifyPhotoPreview.removeAttribute('src');
+        return;
+      }
+      if (!file.type.startsWith('image/')) {
+        identifyPhotoInput.value = '';
+        identifyFeedback.textContent = 'Escolha um ficheiro de imagem válido.';
+        identifyFeedback.dataset.error = 'true';
+        return;
+      }
+      if (file.size > 15 * 1024 * 1024) {
+        identifyPhotoInput.value = '';
+        identifyFeedback.textContent = 'A imagem tem de ter menos de 15 MB.';
+        identifyFeedback.dataset.error = 'true';
+        return;
+      }
+
+      if (identificationPhotoUrl) URL.revokeObjectURL(identificationPhotoUrl);
+      identificationPhotoUrl = URL.createObjectURL(file);
+      identifyPhotoPreview.src = identificationPhotoUrl;
+      identifyPhotoPreview.hidden = false;
+      identifyFeedback.textContent = 'Pré-visualização da fotografia selecionada.';
+    });
+
+    identifyDialog.addEventListener('close', () => {
+      if (identificationPhotoUrl) {
+        URL.revokeObjectURL(identificationPhotoUrl);
+        identificationPhotoUrl = '';
+      }
+      identifyPhotoInput.value = '';
+      identifyPhotoPreview.hidden = true;
+      identifyPhotoPreview.removeAttribute('src');
+      identifyFeedback.textContent = 'A fotografia é apenas pré-visualizada; a espécie não é identificada automaticamente.';
+      identifyFeedback.dataset.error = 'false';
+    });
+
     const detailActions = document.getElementById('detail-actions');
     const bottomNavigation = document.querySelector('.bottom-nav');
     const navigationButtons = [...document.querySelectorAll('.nav-item[data-view]')];
@@ -1647,15 +1720,18 @@
     });
     document.getElementById('profile-see-plants').addEventListener('click', () => showAppView('herbario'));
 
-    function openPlantDetails(plantKey) {
+    function openPlantDetails(plantKey, photoUrl = '') {
       const plant = plantCare[plantKey];
       if (!plant) {
         console.error(`Não existem cuidados registados para a planta "${plantKey}".`);
         return;
       }
       activePlantKey = plantKey;
-      detailView.querySelector('.detail-hero > img').src = plant.image;
-      detailView.querySelector('.detail-hero > img').alt = plant.description;
+      activePlantPhoto = photoUrl || plant.image;
+      detailView.querySelector('.detail-hero > img').src = activePlantPhoto;
+      detailView.querySelector('.detail-hero > img').alt = photoUrl
+        ? `Fotografia escolhida pelo utilizador para ${plant.commonName}`
+        : plant.description;
       detailView.querySelector('.detail-species').textContent = plant.name;
       detailView.querySelector('.detail-common-name').textContent = plant.commonName;
       detailView.querySelector('.detail-summary').textContent = plant.description;
@@ -1766,7 +1842,7 @@
       card.innerHTML = '<div class="garden-plant-image"><img alt=""><span class="plant-status">Saudável</span><span class="plant-indicator"><span class="material-symbols-outlined" aria-hidden="true">local_florist</span>Nova</span></div><div class="garden-plant-copy"><p class="garden-scientific"></p><h3 class="garden-plant-name"></h3><div class="garden-meta"><span><span class="material-symbols-outlined" aria-hidden="true">balcony</span></span><span>Adicionada hoje</span></div></div>';
       const roomLabels = { sala: 'Sala', varanda: 'Varanda', quarto: 'Quarto' };
       const roomIcons = { sala: 'chair', varanda: 'balcony', quarto: 'bed' };
-      card.querySelector('.garden-plant-image img').src = plant.image;
+      card.querySelector('.garden-plant-image img').src = activePlantPhoto || plant.image;
       card.querySelector('.garden-plant-image img').alt = plant.commonName;
       card.querySelector('.garden-scientific').textContent = plant.name;
       card.querySelector('.garden-plant-name').textContent = plant.commonName;
